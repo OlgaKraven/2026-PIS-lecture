@@ -20,9 +20,9 @@ try{
   await fresh.close();await context.close();
  }
  const blocked=await browser.newContext();await blocked.addInitScript(()=>{Storage.prototype.setItem=()=>{throw new DOMException('Blocked','SecurityError');};});const local=await blocked.newPage();await local.goto(pathToFileURL(path.resolve('materials/webinar-1.html')).href);await local.locator('#tools').click();await local.locator('[name=fullName]').fill(name);await local.getByRole('button',{name:'Готово',exact:true}).click();assert.match(await local.locator('dialog [role=status]').textContent(),/Скачайте копию/);assert.equal(await local.locator('.title-profile strong').textContent(),name);await blocked.close();
- const context=await browser.newContext(),p=await context.newPage();await p.goto('http://127.0.0.1:4177/');await p.locator('.ok-teacher summary').click();await p.locator('[name=fullName]').fill(name);
+ const context=await browser.newContext();await context.addInitScript(()=>window.print=()=>{window.printCalls=(window.printCalls||0)+1;});const p=await context.newPage();await p.goto('http://127.0.0.1:4177/');await p.locator('.ok-teacher summary').click();await p.locator('[name=fullName]').fill(name);
  for(const a of await p.locator('[data-pdf-lecture]').all()){assert.match(await a.getAttribute('href'),/mode=print/);assert.equal(await a.getAttribute('download'),null);}
  const popup=p.waitForEvent('popup');await p.locator('.ok-export-actions a').first().click();const print=await popup;await print.locator('.title-profile strong').waitFor();assert.equal(await print.locator('.title-profile strong').textContent(),name);await print.close();
- await p.locator('[name=fullName]').fill('');for(const a of await p.locator('[data-pdf-lecture]').all()){assert.match(await a.getAttribute('href'),/\.pdf$/);assert.notEqual(await a.getAttribute('download'),null);}
+ await p.locator('[name=fullName]').fill('');for(const a of await p.locator('[data-pdf-lecture]').all()){assert.match(await a.getAttribute('href'),/export=pdf/);assert.equal(await a.getAttribute('download'),null);}
  await context.close();assert.deepEqual(errors,[]);console.log('All 4 offline decks: edit, cancel, reload, portable personalized copy, print, mobile dialog. Catalog PDF links follow the presenter profile. No browser errors.');
 }finally{await browser.close();}
