@@ -1,7 +1,7 @@
 /* Shared deterministic rendering for the site, offline HTML and printed diagrams. */
 window.PISDiagrams=(()=>{
  const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const table=(cols,rows,cls='')=>`<table class="learning-table ${cls}"><thead><tr>${cols.map(c=>`<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map(r=>`<tr>${r.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
+ const table=(cols,rows,cls='',active=[])=>`<table class="learning-table ${cls}"><thead><tr>${cols.map(c=>`<th scope="col">${esc(c)}</th>`).join('')}</tr></thead><tbody>${rows.map((r,i)=>`<tr class="${active.includes(i)?'is-focus':''}">${r.map(x=>`<td>${esc(x)}</td>`).join('')}</tr>`).join('')}</tbody></table>`;
  const wrap=(s,n=25)=>{const out=[];for(const word of String(s).split(' ')){if(!out.length||out.at(-1).length+word.length+1>n)out.push(word);else out[out.length-1]+=' '+word;}return out;};
  const text=(s,x,y,n=24)=>`<text x="${x}" y="${y}" text-anchor="middle">${wrap(s,n).map((line,i)=>`<tspan x="${x}" dy="${i?22:0}">${esc(line)}</tspan>`).join('')}</text>`;
  let serial=0;
@@ -31,15 +31,16 @@ window.PISDiagrams=(()=>{
  function ranking(m,sc){const tags=sc===1?['робототехника']:['интерфейсы','клуб'];return m.data.projects.map(p=>({...p,score:p.tags.filter(t=>tags.includes(t)).length})).sort((a,b)=>b.score-a.score||a.id-b.id);}
  function scene(m,sc=0,index=0,complete=false){
  const s=m.scenarios[sc],f=s.frames[index],focus=complete?s.frames.flatMap(x=>x.focus):f.focus;
+ if(m.kind==='visual')return window.PISVisual(m.data.visual,focus);
  if(m.kind==='graph')return graph(m.data,focus);
  if(m.kind==='states')return states(m,focus);
  if(m.kind==='sequence')return sequence(m,s,focus);
  if(m.kind==='cards')return `<ol class="learning-cards">${m.data.items.map((x,i)=>`<li class="${focus.includes(String(i))?'is-focus':''}"><span>${i+1}</span><strong>${esc(x.title)}</strong><p>${esc(x.text)}</p></li>`).join('')}</ol>`;
  if(m.kind==='er')return `<div class="entity-grid">${m.data.entities.map(x=>`<section><h3>${esc(x.name)}</h3>${x.fields.map(f=>`<p class="${f.startsWith('UNIQUE')&&focus.includes('unique')?'is-focus':''}">${esc(f)}</p>`).join('')}</section>`).join('')}</div><div class="er-relations">${m.data.relations.map(([a,b,one,many,label],i)=>`<p class="${focus.includes('r'+i)?'is-focus':''}"><b>${esc(a)}</b> <span class="er-line">${one} ───── ${many}</span> <b>${esc(b)}</b><small>${esc(label)}</small></p>`).join('')}</div>`;
- if(m.kind==='join'){const data=joinData(m,sc),show=complete||index>0;return `<pre>${esc(m.data.sql.replace('$1',sc===1?'99':'12'))}</pre><div class="learning-tables">${table(['a.id','student_id','project_id','status'],m.data.applications)}${table(['p.id','title'],m.data.projects)}</div>${show?table(index===1?['a.id','student_id','p.title','status']:['id','title','status'],index===1?data.joined:data.result,'is-result'):'<p class="learning-pending">Результат ещё не вычислен.</p>'}`;}
- if(m.kind==='validation')return table(['n после trim','n ≥ 50','n ≤ 1000','Результат правила'],m.data.lengths.map(n=>[n,n>=50?'да':'нет',n<=1000?'да':'нет',complete||index>0?(n>=50&&n<=1000?'допустимо':'отказ'):'—']));
+ if(m.kind==='join'){const data=joinData(m,sc),show=complete||index>0;return `<pre>${esc(m.data.sql.replace('$1',sc===1?'99':'12'))}</pre><div class="learning-tables">${table(['a.id','student_id','project_id','status'],m.data.applications)}${table(['p.id','title'],m.data.projects)}</div>${show?table(index===1?['a.id','student_id','p.title','status']:['id','title','status'],index===1?data.joined:data.result,'is-result is-focus'):'<p class="learning-pending">Результат ещё не вычислен.</p>'}`;}
+ if(m.kind==='validation')return table(['n после trim','n ≥ 50','n ≤ 1000','Результат правила'],m.data.lengths.map(n=>[n,n>=50?'да':'нет',n<=1000?'да':'нет',complete||index>0?(n>=50&&n<=1000?'допустимо':'отказ'):'—']),'',focus.includes('low')?[0,1,2]:focus.includes('high')?[3,4,5]:[]);
  if(m.kind==='funnel')return `<div class="learning-funnel">${m.data.items.map(([name,n],i)=>`<div class="${focus.includes(String(i))?'is-focus':''}"><b>${esc(name)}</b><span class="funnel-track"><span style="width:${n}%"></span></span><strong>${n} чел.</strong><small>${i?`${n}/${m.data.items[i-1][1]} = ${(n/m.data.items[i-1][1]*100).toFixed(1).replace('.',',')} % предыдущего этапа`:'База: 100 человек'}</small></div>`).join('')}</div><p>Весь путь: 25/100 = <strong>25 %</strong>. Одна когорта, одна неделя; числа условные.</p>`;
- if(m.kind==='ranking'){const rows=ranking(m,sc);return table(['Проект','Теги каталога',index||complete?'Совпадения':'Оценка'],rows.map(p=>[`${p.id} · ${p.title}`,p.tags.join(', '),index||complete?p.score:'—']))+(index>=3||complete?`<p class="learning-result">Выдача: ${rows.filter(p=>p.score>0).map(p=>p.id+' · '+esc(p.title)).join('; ')||'нет положительных совпадений'}</p>`:'');}
+ if(m.kind==='ranking'){const rows=ranking(m,sc);return table(['Проект','Теги каталога',index||complete?'Совпадения':'Оценка'],rows.map(p=>[`${p.id} · ${p.title}`,p.tags.join(', '),index||complete?p.score:'—']),'',focus.length?rows.map((_,i)=>i):[])+(index>=3||complete?`<p class="learning-result">Выдача: ${rows.filter(p=>p.score>0).map(p=>p.id+' · '+esc(p.title)).join('; ')||'нет положительных совпадений'}</p>`:'');}
  return '';
  }
  function render(m,{scenario=0,index=0,staticMode=false,overview=false}={}){
@@ -56,7 +57,7 @@ window.PISDiagrams=(()=>{
   container.querySelector('[data-back]').onclick=()=>jump(index-1);
   container.querySelector('[data-next]').onclick=()=>jump(index+1);
   container.querySelector('[data-reset]').onclick=()=>jump(0);
-  container.querySelector('[data-play]')?.addEventListener('click',()=>{if(running){pause();return;}if(index===s.frames.length-1){index=0;remaining=1800;}running=true;draw();schedule();notify();});
+  container.querySelector('[data-play]')?.addEventListener('click',()=>{if(running){pause();return;}if(matchMedia('(prefers-reduced-motion: reduce)').matches){jump(index===s.frames.length-1?0:index+1);return;}if(index===s.frames.length-1){index=0;remaining=1800;}running=true;draw();schedule();notify();});
   if(focusKey){const target=container.querySelector('[data-'+focusKey+']');if(target&&!target.disabled)target.focus({preventScroll:true});}
   container.querySelector('[data-scenario]')?.addEventListener('change',ev=>{pause(false);sc=Number(ev.target.value);index=0;remaining=1800;draw();notify();});
  };

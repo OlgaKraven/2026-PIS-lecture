@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "5a3938851c25d66112ff4e60b0961cbbc2e69f68f9d98b40a6a672b0674a1e40",
-  "sourceVersion": "pis-2026.10.23-v3",
+  "sourceSha256": "e53c43c4cf17480a32ee6c71f9ee1786704d9f8b7061c6470011aa818b7322a5",
+  "sourceVersion": "pis-2026.10.23-v4",
   "lectureId": "webinar-2",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -60,345 +60,441 @@
       "anchor": "З2-С04"
     },
     {
+      "slideId": "З2-П1",
+      "title": "Практика: Интерфейс и данные",
+      "displayNumber": 9,
+      "anchor": "З2-П1"
+    },
+    {
+      "slideId": "З2-Т1",
+      "title": "Самопроверка · Вопрос 1",
+      "displayNumber": 10,
+      "anchor": "З2-Т1"
+    },
+    {
       "slideId": "З2-С05",
       "title": "Путь пользователя",
-      "displayNumber": 9,
+      "displayNumber": 11,
       "anchor": "З2-С05"
     },
     {
       "slideId": "З2-С06",
       "title": "Карта экранов",
-      "displayNumber": 10,
+      "displayNumber": 12,
       "anchor": "З2-С06"
     },
     {
       "slideId": "З2-С07",
       "title": "Навигация",
-      "displayNumber": 11,
+      "displayNumber": 13,
       "anchor": "З2-С07"
     },
     {
       "slideId": "З2-С08",
       "title": "Порядок информации",
-      "displayNumber": 12,
+      "displayNumber": 14,
       "anchor": "З2-С08"
     },
     {
       "slideId": "З2-С09",
       "title": "Последовательность действий",
-      "displayNumber": 13,
+      "displayNumber": 15,
       "anchor": "З2-С09"
     },
     {
       "slideId": "З2-С10",
       "title": "Состав формы заявки",
-      "displayNumber": 14,
+      "displayNumber": 16,
       "anchor": "З2-С10"
     },
     {
       "slideId": "З2-С11",
       "title": "Обязательные поля и границы",
-      "displayNumber": 15,
+      "displayNumber": 17,
       "anchor": "З2-С11"
     },
     {
       "slideId": "З2-С12",
       "title": "Тексты интерфейса",
-      "displayNumber": 16,
+      "displayNumber": 18,
       "anchor": "З2-С12"
+    },
+    {
+      "slideId": "З2-П2",
+      "title": "Практика: Контекст пути",
+      "displayNumber": 19,
+      "anchor": "З2-П2"
+    },
+    {
+      "slideId": "З2-Т2",
+      "title": "Самопроверка · Вопрос 2",
+      "displayNumber": 20,
+      "anchor": "З2-Т2"
     },
     {
       "slideId": "З2-С13",
       "title": "Читаемость и доступность",
-      "displayNumber": 17,
+      "displayNumber": 21,
       "anchor": "З2-С13"
     },
     {
       "slideId": "З2-С14",
       "title": "Читаемость",
-      "displayNumber": 18,
+      "displayNumber": 22,
       "anchor": "З2-С14"
     },
     {
       "slideId": "З2-С15",
       "title": "Контраст",
-      "displayNumber": 19,
+      "displayNumber": 23,
       "anchor": "З2-С15"
     },
     {
       "slideId": "З2-С16",
       "title": "Цвет и смысл состояния",
-      "displayNumber": 20,
+      "displayNumber": 24,
       "anchor": "З2-С16"
     },
     {
       "slideId": "З2-С17",
       "title": "Подписи элементов",
-      "displayNumber": 21,
+      "displayNumber": 25,
       "anchor": "З2-С17"
     },
     {
       "slideId": "З2-С18",
       "title": "Работа с клавиатурой",
-      "displayNumber": 22,
+      "displayNumber": 26,
       "anchor": "З2-С18"
     },
     {
       "slideId": "З2-С19",
       "title": "Видимый фокус",
-      "displayNumber": 23,
+      "displayNumber": 27,
       "anchor": "З2-С19"
     },
     {
       "slideId": "З2-С20",
       "title": "Узкий экран",
-      "displayNumber": 24,
+      "displayNumber": 28,
       "anchor": "З2-С20"
+    },
+    {
+      "slideId": "З2-П3",
+      "title": "Практика: Доступность",
+      "displayNumber": 29,
+      "anchor": "З2-П3"
+    },
+    {
+      "slideId": "З2-Т3",
+      "title": "Самопроверка · Вопрос 3",
+      "displayNumber": 30,
+      "anchor": "З2-Т3"
     },
     {
       "slideId": "З2-С21",
       "title": "Десять экранов",
-      "displayNumber": 25,
+      "displayNumber": 31,
       "anchor": "З2-С21"
     },
     {
       "slideId": "З2-С22",
       "title": "Карточка проекта",
-      "displayNumber": 26,
+      "displayNumber": 32,
       "anchor": "З2-С22"
     },
     {
       "slideId": "З2-С23",
       "title": "Пустая форма",
-      "displayNumber": 27,
+      "displayNumber": 33,
       "anchor": "З2-С23"
     },
     {
       "slideId": "З2-С24",
       "title": "Заполненная форма",
-      "displayNumber": 28,
+      "displayNumber": 34,
       "anchor": "З2-С24"
     },
     {
       "slideId": "З2-С25",
       "title": "Отправка формы",
-      "displayNumber": 29,
+      "displayNumber": 35,
       "anchor": "З2-С25"
     },
     {
       "slideId": "З2-С26",
       "title": "Подтверждение подачи",
-      "displayNumber": 30,
+      "displayNumber": 36,
       "anchor": "З2-С26"
     },
     {
       "slideId": "З2-С27",
       "title": "Мои заявки",
-      "displayNumber": 31,
+      "displayNumber": 37,
       "anchor": "З2-С27"
     },
     {
       "slideId": "З2-С28",
       "title": "Список преподавателя",
-      "displayNumber": 32,
+      "displayNumber": 38,
       "anchor": "З2-С28"
     },
     {
       "slideId": "З2-С29",
       "title": "Просмотр заявки",
-      "displayNumber": 33,
+      "displayNumber": 39,
       "anchor": "З2-С29"
     },
     {
       "slideId": "З2-С30",
       "title": "Решение сохранено",
-      "displayNumber": 34,
+      "displayNumber": 40,
       "anchor": "З2-С30"
+    },
+    {
+      "slideId": "З2-П4",
+      "title": "Практика: Подтверждение результата",
+      "displayNumber": 41,
+      "anchor": "З2-П4"
+    },
+    {
+      "slideId": "З2-Т4",
+      "title": "Самопроверка · Вопрос 4",
+      "displayNumber": 42,
+      "anchor": "З2-Т4"
     },
     {
       "slideId": "З2-С31",
       "title": "Состояния интерфейса",
-      "displayNumber": 35,
+      "displayNumber": 43,
       "anchor": "З2-С31"
     },
     {
       "slideId": "З2-С32",
       "title": "Загрузка данных",
-      "displayNumber": 36,
+      "displayNumber": 44,
       "anchor": "З2-С32"
     },
     {
       "slideId": "З2-С33",
       "title": "Отсутствие данных",
-      "displayNumber": 37,
+      "displayNumber": 45,
       "anchor": "З2-С33"
     },
     {
       "slideId": "З2-С34",
       "title": "Ошибка заполнения",
-      "displayNumber": 38,
+      "displayNumber": 46,
       "anchor": "З2-С34"
     },
     {
       "slideId": "З2-С35",
       "title": "Повторная подача в интерфейсе",
-      "displayNumber": 39,
+      "displayNumber": 47,
       "anchor": "З2-С35"
     },
     {
       "slideId": "З2-С36",
       "title": "Закрытый набор на экране",
-      "displayNumber": 40,
+      "displayNumber": 48,
       "anchor": "З2-С36"
     },
     {
       "slideId": "З2-С37",
       "title": "Неопределённый результат при обрыве связи",
-      "displayNumber": 41,
+      "displayNumber": 49,
       "anchor": "З2-С37"
     },
     {
       "slideId": "З2-С38",
       "title": "Отображение статуса заявки",
-      "displayNumber": 42,
+      "displayNumber": 50,
       "anchor": "З2-С38"
+    },
+    {
+      "slideId": "З2-П5",
+      "title": "Практика: Два вида состояния",
+      "displayNumber": 51,
+      "anchor": "З2-П5"
+    },
+    {
+      "slideId": "З2-Т5",
+      "title": "Самопроверка · Вопрос 5",
+      "displayNumber": 52,
+      "anchor": "З2-Т5"
     },
     {
       "slideId": "З2-С39",
       "title": "Объектная модель",
-      "displayNumber": 43,
+      "displayNumber": 53,
       "anchor": "З2-С39"
     },
     {
       "slideId": "З2-С40",
       "title": "Объект «Пользователь»",
-      "displayNumber": 44,
+      "displayNumber": 54,
       "anchor": "З2-С40"
     },
     {
       "slideId": "З2-С41",
       "title": "Объект «Проект»",
-      "displayNumber": 45,
+      "displayNumber": 55,
       "anchor": "З2-С41"
     },
     {
       "slideId": "З2-С42",
       "title": "Объект «Заявка»",
-      "displayNumber": 46,
+      "displayNumber": 56,
       "anchor": "З2-С42"
     },
     {
       "slideId": "З2-С43",
       "title": "Связи объектов",
-      "displayNumber": 47,
+      "displayNumber": 57,
       "anchor": "З2-С43"
     },
     {
       "slideId": "З2-С44",
       "title": "Количество связанных объектов",
-      "displayNumber": 48,
+      "displayNumber": 58,
       "anchor": "З2-С44"
     },
     {
       "slideId": "З2-С45",
       "title": "Предметная модель и таблицы",
-      "displayNumber": 49,
+      "displayNumber": 59,
       "anchor": "З2-С45"
     },
     {
       "slideId": "З2-С46",
       "title": "Поведение объекта заявки",
-      "displayNumber": 50,
+      "displayNumber": 60,
       "anchor": "З2-С46"
+    },
+    {
+      "slideId": "З2-П6",
+      "title": "Практика: Связь и кратность",
+      "displayNumber": 61,
+      "anchor": "З2-П6"
+    },
+    {
+      "slideId": "З2-Т6",
+      "title": "Самопроверка · Вопрос 6",
+      "displayNumber": 62,
+      "anchor": "З2-Т6"
     },
     {
       "slideId": "З2-С47",
       "title": "Структура данных",
-      "displayNumber": 51,
+      "displayNumber": 63,
       "anchor": "З2-С47"
     },
     {
       "slideId": "З2-С48",
       "title": "Первичный ключ",
-      "displayNumber": 52,
+      "displayNumber": 64,
       "anchor": "З2-С48"
     },
     {
       "slideId": "З2-С49",
       "title": "Внешний ключ",
-      "displayNumber": 53,
+      "displayNumber": 65,
       "anchor": "З2-С49"
     },
     {
       "slideId": "З2-С50",
       "title": "Таблица пользователей",
-      "displayNumber": 54,
+      "displayNumber": 66,
       "anchor": "З2-С50"
     },
     {
       "slideId": "З2-С51",
       "title": "Таблица проектов",
-      "displayNumber": 55,
+      "displayNumber": 67,
       "anchor": "З2-С51"
     },
     {
       "slideId": "З2-С52",
       "title": "Таблица заявок",
-      "displayNumber": 56,
+      "displayNumber": 68,
       "anchor": "З2-С52"
     },
     {
       "slideId": "З2-С53",
       "title": "Типы и обязательность данных",
-      "displayNumber": 57,
+      "displayNumber": 69,
       "anchor": "З2-С53"
     },
     {
       "slideId": "З2-С54",
       "title": "Уникальность пары",
-      "displayNumber": 58,
+      "displayNumber": 70,
       "anchor": "З2-С54"
     },
     {
       "slideId": "З2-С55",
       "title": "Допустимые значения статуса",
-      "displayNumber": 59,
+      "displayNumber": 71,
       "anchor": "З2-С55"
     },
     {
       "slideId": "З2-С56",
       "title": "Получение связанных данных",
-      "displayNumber": 60,
+      "displayNumber": 72,
       "anchor": "З2-С56"
+    },
+    {
+      "slideId": "З2-П7",
+      "title": "Практика: Уникальная пара",
+      "displayNumber": 73,
+      "anchor": "З2-П7"
+    },
+    {
+      "slideId": "З2-Т7",
+      "title": "Самопроверка · Вопрос 7",
+      "displayNumber": 74,
+      "anchor": "З2-Т7"
     },
     {
       "slideId": "З2-С57",
       "title": "Разбор прототипа",
-      "displayNumber": 61,
+      "displayNumber": 75,
       "anchor": "З2-С57"
     },
     {
       "slideId": "З2-С58",
       "title": "Проход по сценарию Анны",
-      "displayNumber": 62,
+      "displayNumber": 76,
       "anchor": "З2-С58"
     },
     {
       "slideId": "З2-С59",
       "title": "Проход по сценарию Ирины",
-      "displayNumber": 63,
+      "displayNumber": 77,
       "anchor": "З2-С59"
+    },
+    {
+      "slideId": "З2-П8",
+      "title": "Практика: Проверка прототипа",
+      "displayNumber": 78,
+      "anchor": "З2-П8"
+    },
+    {
+      "slideId": "З2-Т8",
+      "title": "Самопроверка · Вопрос 8",
+      "displayNumber": 79,
+      "anchor": "З2-Т8"
     },
     {
       "slideId": "З2-И01",
       "title": "Итоги занятия",
-      "displayNumber": 64,
+      "displayNumber": 80,
       "anchor": "З2-И01"
     },
     {
       "slideId": "З2-С60",
       "title": "Вопросы от аудитории",
-      "displayNumber": 65,
+      "displayNumber": 81,
       "anchor": "З2-С60"
     }
   ]

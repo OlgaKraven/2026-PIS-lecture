@@ -35,6 +35,16 @@ scenario('Таймаут и повтор','Сохранение подтверж
 scenario('Интерфейсы клуба','Учебный запрос после выделения тегов: интерфейсы, клуб. Оценка — число общих тегов.',[frame('Обзор: два существующих проекта и объявленное правило оценки.'),frame('Сравниваем теги запроса с тегами каждого проекта.',['score']),frame('Проект 17: 2 совпадения; проект 18: 0.',['rank']),frame('Выдаём только положительные совпадения. При равенстве — id по возрастанию.',['result'],'17 · Сайт клуба. Это прозрачный базовый поиск, а не проверенная модель смысловой близости.')]),
 scenario('Нет совпадений','Учебный запрос после выделения тегов: робототехника.',[frame('Обзор: каталог тот же; входные теги изменились.'),frame('Сравниваем теги с обоими описаниями.',['score']),frame('Оба проекта получили 0 совпадений.',['rank']),frame('Положительных совпадений нет; рекомендации не выдумываем.',['result'],'Пустая выдача. Обычный каталог остаётся доступен.')])])
 };
+function explanationModel(s,lecture,index){
+ const points=[];
+ function walk(v,prefix=''){
+  if(v.type==='diagram')v.edges.forEach(([a,b,label],i)=>points.push({caption:`${a} → ${b}: ${label}`,focus:[prefix+'e'+i]}));
+  if(v.type==='process')v.items.forEach((x,i)=>points.push({caption:x.title+': '+x.text,focus:[prefix+'p'+i]}));
+  if(v.type==='pair')v.items.flatMap(x=>x.visual.type==='pair'?x.visual.items:[x]).forEach((x,i)=>walk(x.visual,prefix+'v'+i+'.'));
+ }
+ walk(s.visual);if(!points.length)return null;
+ return model(`explain-${lecture}-${index+1}`,'Свободная схема',s.title,'visual',{visual:s.visual,note:'Порядок подсветки служит объяснению; он не изображает выполнение системы.'},[scenario('Разбор материала',s.body,[frame('Обзор: все элементы и подписи доступны до начала показа.'),...points.map(x=>frame(x.caption,x.focus)),frame('Сопоставьте все элементы и сформулируйте вывод.',[],s.body)])],true);
+}
 export function enhanceSlides(slides,lecture){
  const definitions={
  '1-4':'Веб-приложение — приложение, доступное через браузер и взаимодействующее с сервером по сети.',
@@ -52,7 +62,7 @@ export function enhanceSlides(slides,lecture){
  };
  for(let i=0;i<slides.length;i++){
   const s=slides[i];if(definitions[`${lecture}-${i+1}`]){const target=s.kind==='section'?slides[i+1]:s;target.notebook=definitions[`${lecture}-${i+1}`];}
-  const m=models[`${lecture}-${i+1}`];
+  const m=models[`${lecture}-${i+1}`]||(i>1&&!s.kind?explanationModel(s,lecture,i):null);
   if(m){s.learning=m;s.hint=`${s.hint||''} Разверните схему. Начните с обзора; последовательно нажимайте «Далее». ${m.scenarios.length>1?'Сравните условия и результаты всех сценариев.':'Прочитайте исходные данные и итог.'} «Назад» восстанавливает снимок; автоматического запуска нет.`;}
  }
  return slides;

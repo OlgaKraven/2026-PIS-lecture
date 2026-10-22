@@ -14,7 +14,7 @@ try{
   await page.goto(`${base}?webinar=${l.number}&mode=print`);await page.locator('.print-slide').first().waitFor();await page.evaluate(()=>document.fonts.ready);await page.emulateMedia({media:'print'});await page.waitForTimeout(100);
   const issues=await page.evaluate(()=>[...document.querySelectorAll('.slide-frame')].flatMap(frame=>{
    const b=frame.getBoundingClientRect(),footer=frame.querySelector('.slide-footer').getBoundingClientRect();
-   return [...frame.querySelectorAll('h2,.slide-body,.visual-table,.visual-code pre,.process-item,.mockup,.question-list,.agenda-list,.title-profile,.bibliography,.learning-scene,.learning-static-steps,.learning-result,.learning-note')].flatMap(el=>{
+   return [...frame.querySelectorAll('h2,.slide-body,.visual-table,.visual-code pre,.process-item,.mockup,.question-list,.agenda-list,.title-profile,.bibliography,.learning-scene,.learning-static-steps,.learning-result,.learning-note,.quiz,.practice-passport')].flatMap(el=>{
     const r=el.getBoundingClientRect();if(!r.width||!r.height)return [];
     return r.top<b.top-2||r.bottom>footer.top+3||r.left<b.left-2||r.right>b.right+2?[{id:frame.dataset.slideId,element:el.className||el.tagName,top:Math.round(r.top-b.top),bottom:Math.round(r.bottom-b.top),limit:Math.round(footer.top-b.top),right:Math.round(r.right-b.right)}]:[];
    });
@@ -29,7 +29,7 @@ try{
    if(s.learning.scenarios.length>1)await d.locator('select').selectOption(String(sc));
    assert.match(await d.locator('.learning-toolbar>span').innerText(),/^Шаг 0/);
    const frames=s.learning.scenarios[sc].frames;
-   for(let i=1;i<frames.length;i++)await d.getByRole('button',{name:'Далее',exact:true}).click();
+   for(let i=1;i<frames.length;i++){await d.getByRole('button',{name:'Далее',exact:true}).click();if(frames[i].focus.length)assert.ok(await d.locator('.learning-scene .is-focus').count(),s.id+' step '+i);}
    assert.ok((await d.locator('.learning-caption').innerText()).includes(frames.at(-1).result));
    if(frames.length>1){await d.getByRole('button',{name:'Назад',exact:true}).click();assert.ok((await d.locator('.learning-caption').innerText()).includes(frames.at(-2).caption));}
    await d.getByRole('button',{name:'К обзору',exact:true}).click();report.scenarios++;
@@ -44,17 +44,17 @@ try{
  assert.deepEqual(computations.join.result,[[104,'Клуб','pending'],[106,'Архив','accepted']]);assert.deepEqual(computations.empty.result,[]);
  report.checks.push('Все модели и сценарии, назад/далее, смена условий, пауза и продолжение, вычисление JOIN');
  // Persisted theme, presenter, audience privacy, slide and diagram synchronization.
- await page.goto(`${base}?webinar=1&slide=39&mode=presenter`);await page.locator('.presenter').waitFor();
+ await page.goto(`${base}?webinar=1&slide=47&mode=presenter`);await page.locator('.presenter').waitFor();
  const popup=page.waitForEvent('popup');await page.getByRole('button',{name:'Открыть окно аудитории'}).click();const audience=await popup;await audience.locator('.slide-frame').waitFor();
  assert.equal(await audience.locator('.presenter-notes').count(),0);
  await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.locator('[data-theme-choice]').selectOption('dark');await page.getByRole('button',{name:'Закрыть',exact:true}).click();await audience.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
  await page.getByRole('button',{name:'Развернуть схему'}).click();await audience.locator('.diagram-dialog').waitFor();await page.locator('.diagram-dialog').getByRole('button',{name:'Далее',exact:true}).click();await audience.waitForFunction(()=>document.querySelector('.learning-caption')?.textContent.includes('Пользователь и принадлежность'));
  await page.locator('.diagram-dialog').getByRole('button',{name:'К слайду',exact:true}).click();await audience.locator('.diagram-dialog').waitFor({state:'detached'});
- await page.getByRole('button',{name:'Следующий слайд'}).click();await audience.waitForURL('**slide=40**');
+ await page.getByRole('button',{name:'Следующий слайд'}).click();await audience.waitForURL('**slide=48**');
  await page.getByRole('button',{name:'Завершить показ'}).click();await audience.getByText('Показ завершён').waitFor();await page.getByRole('button',{name:'Следующий слайд'}).click();await page.waitForTimeout(100);assert.equal(await audience.locator('.slide-frame').count(),0);await audience.close();
  report.checks.push('Два окна: тема, слайд и шаг схемы синхронны; сценарий скрыт; завершение убирает слайд');
  await page.goto(`${base}?webinar=1&slide=5&mode=deck`);await page.locator('.bibliography').waitFor();
- assert.equal(await page.locator('.presentation-topic').innerText(),'Литература');assert.equal(await page.locator('.slide-body').count(),0);assert.equal(await page.getByRole('link',{name:'Открыть источник ↗'}).count(),2);assert.equal(await page.locator('[data-tools]').innerText(),'');
+ assert.equal(await page.locator('.presentation-topic').first().innerText(),'МДК 01.01 · 3 семестр');assert.equal(await page.locator('.slide-body').count(),0);assert.equal(await page.getByRole('link',{name:'Открыть источник ↗'}).count(),2);assert.equal(await page.locator('[data-tools]').innerText(),'');
  await page.evaluate(()=>Promise.all([...document.querySelectorAll('.source-qr')].map(i=>i.decode())));
  if(process.env.JSQR_PATH){await page.addScriptTag({path:process.env.JSQR_PATH});
  const qrURLs=await page.evaluate(()=>[...document.querySelectorAll('.source-qr')].map(img=>{const c=document.createElement('canvas');c.width=c.height=400;const ctx=c.getContext('2d');ctx.drawImage(img,0,0,400,400);const pixels=ctx.getImageData(0,0,400,400);return window.jsQR(pixels.data,400,400)?.data;}));
@@ -64,13 +64,13 @@ try{
  // Both themes, narrow/low viewports, long profile fields, downloadable assets.
  for(const theme of ['light','dark']){
   await page.evaluate(t=>localStorage.setItem('pis-theme',t),theme);
-  for(const [name,slide] of [['title',1],['literature',5],['question',7],['states',39],['dense',63]]){
+  for(const [name,slide] of [['title',1],['literature',5],['question',7],['states',47],['dense',77]]){
    await page.goto(`${base}?webinar=1&slide=${slide}&mode=deck`);await page.locator('.slide-frame').waitFor();await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:`output/review/${name}-${theme}.png`});
   }
  }
  for(const width of [320,390,1024]){
   await page.setViewportSize({width,height:width===1024?600:844});
-  for(const slide of [1,5,39]){
+  for(const slide of [1,5,47]){
    await page.goto(`${base}?webinar=1&slide=${slide}&mode=deck`);await page.locator('.slide-frame').waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`Горизонтальная прокрутка ${width}, ${slide}`);
   }
   await page.screenshot({path:`output/review/mobile-${width}.png`,fullPage:true});
@@ -83,7 +83,7 @@ try{
  await page.route('http**/*',r=>r.abort());
  for(const l of course.lectures){
   await page.goto(pathToFileURL(path.resolve(`materials/webinar-${l.number}.html`)).href);await page.locator('.offline-slide:not([hidden])').waitFor();
-  await page.keyboard.press('End');assert.equal(await page.locator('#counter').innerText(),`65 / 65`);
+  await page.keyboard.press('End');assert.equal(await page.locator('#counter').innerText(),`${l.slides.length} / ${l.slides.length}`);
   const s=l.slides.find(s=>s.learning);await page.goto(pathToFileURL(path.resolve(`materials/webinar-${l.number}.html`)).href+'#slide='+s.number);await page.locator('.offline-slide:not([hidden]) [data-diagram]').click();await page.locator('.diagram-dialog [data-next]').click();await page.getByRole('button',{name:'К слайду',exact:true}).click();
  }
  report.checks.push('Четыре автономных HTML: слайды, литература и интерактивы без сети');

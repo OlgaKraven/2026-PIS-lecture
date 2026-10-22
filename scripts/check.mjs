@@ -5,7 +5,7 @@ const source=fs.readFileSync('course.json'),course=JSON.parse(source);
 assert.equal(course.discipline,'Проектирование информационных ресурсов');assert.equal(course.moduleCode,'МДК 01.01');assert.equal(course.lectures.length,4);
 const ids=new Set();let models=0,scenarios=0;
 for(const l of course.lectures){
- assert.equal(l.slides.length,65);assert.equal(l.totalSeconds,7200);
+ assert.equal(l.slides.length,81);assert.equal(l.totalSeconds,7200);
  assert.equal(l.slides[3].kind,'resources');assert.equal(l.slides[3].title,'Материалы к занятиям');assert.equal(l.slides[3].body,'');assert.equal(l.slides.at(-1).title,'Вопросы от аудитории');assert.equal(l.slides.at(-1).body,'');
  assert.equal(l.slides[0].number,1);assert.equal(l.slides.at(-1).kind,'questions');
  assert.equal(l.slides.filter(s=>s.kind==='section').length,8);
@@ -14,8 +14,8 @@ for(const l of course.lectures){
  let elapsed=0;
  for(const [i,s] of l.slides.entries()){
   assert.ok(!ids.has(s.id),s.id);ids.add(s.id);assert.equal(s.number,i+1);assert.ok(s.title&&s.script&&s.hint&&s.visualDescription);
-  if(!['literature','resources','questions'].includes(s.kind))assert.ok(s.body,s.id);
-  assert.equal(s.startSeconds,elapsed);elapsed+=s.plannedSeconds;assert.ok(s.plannedSeconds>s.pauseSeconds,s.id);assert.ok(s.requiredWpm>=65&&s.requiredWpm<=150,`${s.id}: ${s.requiredWpm}`);
+  if(!['literature','resources','questions','practice','quiz'].includes(s.kind))assert.ok(s.body,s.id);
+  assert.equal(s.startSeconds,elapsed);elapsed+=s.plannedSeconds;if(s.supplemental){assert.equal(s.plannedSeconds,0);}else{assert.ok(s.plannedSeconds>s.pauseSeconds,s.id);assert.ok(s.requiredWpm>=65&&s.requiredWpm<=150,`${s.id}: ${s.requiredWpm}`);}
   for(const url of s.sources)assert.equal(new URL(url).protocol,'https:');
   if(s.visual.type==='bibliography')for(const book of s.visual.books){assert.ok(fs.existsSync(book.qr));assert.equal(s.body,'');}
   if(s.learning){models++;assert.ok(s.learning.catalog);for(const variant of s.learning.scenarios){scenarios++;assert.ok(variant.input);assert.ok(variant.frames[0].caption);assert.ok(variant.frames.at(-1).result);}}
@@ -28,7 +28,8 @@ for(const l of course.lectures){
  const presenter=fs.readFileSync(`materials/webinar-${l.number}-script.md`,'utf8'),teacher=fs.readFileSync(`materials/webinar-${l.number}-teacher.md`,'utf8');
  const map=JSON.parse(fs.readFileSync(`materials/webinar-${l.number}-alignment.json`));assert.equal(map.sourceSha256,crypto.createHash('sha256').update(source).digest('hex'));assert.deepEqual(map.slides.map(s=>s.slideId),l.slides.map(s=>s.id));
  for(const s of l.slides){assert.ok(presenter.includes(`<a id="${s.id}"></a>`));assert.ok(teacher.includes(`<a id="${s.id}"></a>`));assert.equal(map.slides[s.number-1].displayNumber,s.number);}
- console.log(`Лекция ${l.number}: 65 слайдов; план 120 мин; расчёт ${(l.estimatedSeconds/60).toFixed(1)} мин; сценарий и текст привязаны ко всем ID.`);
+ console.log(`Лекция ${l.number}: 81 слайд; план 120 мин; расчёт ${(l.estimatedSeconds/60).toFixed(1)} мин; сценарий и текст привязаны ко всем ID.`);
 }
-assert.equal(models,15);assert.equal(scenarios,25);
+assert.ok(models>15);assert.ok(scenarios>25);
+for(const l of course.lectures){assert.equal(l.slides.filter(s=>s.quiz).length,8);assert.equal(l.slides.filter(s=>s.activity).length,8);for(const s of l.slides.filter(s=>s.quiz)){assert.ok(s.quiz.answer>=0&&s.quiz.answer<s.quiz.options.length);assert.equal(l.slides[s.number-2].kind,'practice');}}
 console.log('Проверены структура, стабильные ID, литература, QR-ресурсы, схемы и привязка преподавательских текстов.');

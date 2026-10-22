@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import crypto from 'node:crypto';
 import {plan,discipline,specialty} from '../authoring/plan.mjs';
 import {finishSlides} from '../authoring/finishing.mjs';
+import {addPractice} from '../authoring/practice.mjs';
 import {addStructure} from '../authoring/structure.mjs';
 import {enhanceSlides} from '../authoring/enhancements.mjs';
 import {writeOffline} from './offline.mjs';
@@ -40,7 +41,7 @@ function normalizeTerms(value){
  if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,normalizeTerms(v)]));
  return value;
 }
-const course={version:'pis-2026.10.23-v3',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
+const course={version:'pis-2026.10.23-v4',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
 for(let k=0;k<4;k++){
  const meta=plan[k],slides=normalizeTerms(enhanceSlides(finishSlides(loaded[k],meta,k+1),k+1));
  let elapsed=0;
@@ -55,7 +56,7 @@ for(let k=0;k<4;k++){
    if(a===1&&i===1)sec+=Math.floor(mins*60/(z-a+1))-45;
    const next=slides[i+1];
    const transition=s.transition||(next?(next.kind==='section'?`Следующий вопрос — ${next.title.toLowerCase()}. ${next.body}.`:''):k<3?'На следующем занятии продолжим работу с тем же учебным сервисом.':'На этом завершается полный путь проектирования учебного информационного ресурса.');
-   const diagramSpeech=s.learning?('На схеме разберём исходные данные: '+s.learning.scenarios[0].input+' '+s.learning.scenarios[0].frames.map(f=>f.caption+' '+f.result).join(' ')+(s.learning.scenarios.length>1?' Изменим условие. '+s.learning.scenarios.slice(1).map(x=>x.input+' '+x.frames.at(-1).result).join(' '):'')):visualSpeech(s.visual);
+   const diagramSpeech=s.learning&&s.learning.kind!=='visual'?('На схеме разберём исходные данные: '+s.learning.scenarios[0].input+' '+s.learning.scenarios[0].frames.map(f=>f.caption+' '+f.result).join(' ')+(s.learning.scenarios.length>1?' Изменим условие. '+s.learning.scenarios.slice(1).map(x=>x.input+' '+x.frames.at(-1).result).join(' '):'')):visualSpeech(s.visual);
    const script=[s.speech,diagramSpeech,s.explanation,transition].join('\n\n');
    const pauseFor=v=>v.type==='pair'?v.items.reduce((a,x)=>a+pauseFor(x.visual),0):v.type==='diagram'?14:v.type==='code'?12:v.type==='screen'?10:v.type==='questions'?18:8;
    const pauseSeconds=i===0?0:pauseFor(s.visual);
@@ -64,17 +65,17 @@ for(let k=0;k<4;k++){
    const result={...s,question:i>1&&s.kind!=='questions'?question:null,id:`З${k+1}-С${String(i+1).padStart(2,'0')}`,number:i+1,blockTitle,blockIndex:meta.blocks.indexOf(b),plannedSeconds:sec,startSeconds:elapsed,transition,script,visualDescription:describe(s.visual),wordCount:count,pauseSeconds,estimatedSeconds:Math.round(count/110*60+pauseSeconds),requiredWpm:Math.round(count/((sec-pauseSeconds)/60)),links:`${meta.id}, ${blockTitle}; учебные правила проекта`};
    elapsed+=sec;return result;
  });
- output=addStructure(output,k+1,meta);
+ output=addPractice(addStructure(output,k+1,meta),k+1);
  for(const s of output.filter(s=>s.visual.type==='agenda'))for(const item of s.visual.items)item.start=output.find(x=>x.kind==='section'&&x.question===item.number).number;
  // Keep the 120-minute lecture budget after adding introductions and literature.
  // Allocate from actual narration, preserving pauses; do not compress the opening block.
- elapsed=0;let allocated=0;const totalWeight=output.reduce((sum,s)=>sum+s.estimatedSeconds,0);
+ elapsed=0;let allocated=0;const totalWeight=output.filter(s=>!s.supplemental).reduce((sum,s)=>sum+s.estimatedSeconds,0);
  for(let j=0;j<output.length;j++){
-   const s=output[j];s.plannedSeconds=j===output.length-1?7200-allocated:Math.round(7200*s.estimatedSeconds/totalWeight);
+   const s=output[j];if(s.supplemental){s.plannedSeconds=0;s.startSeconds=elapsed;s.requiredWpm=0;continue;}s.plannedSeconds=j===output.length-1?7200-allocated:Math.round(7200*s.estimatedSeconds/totalWeight);
    s.startSeconds=elapsed;s.requiredWpm=Math.round(s.wordCount/((s.plannedSeconds-s.pauseSeconds)/60));allocated+=s.plannedSeconds;elapsed+=s.plannedSeconds;
  }
  const updatedBlocks=meta.blocks.map((b,i)=>{const group=output.filter(s=>s.blockIndex===i);return [group[0].number,group.at(-1).number,group.reduce((sum,s)=>sum+s.plannedSeconds,0)/60,b[3]];});
- course.lectures.push({...meta,number:k+1,blocks:updatedBlocks,slides:output,totalSeconds:elapsed,totalWords:output.reduce((a,s)=>a+s.wordCount,0),estimatedSeconds:output.reduce((a,s)=>a+s.estimatedSeconds,0)});
+ course.lectures.push({...meta,semester:3,number:k+1,blocks:updatedBlocks,slides:output,totalSeconds:elapsed,totalWords:output.reduce((a,s)=>a+s.wordCount,0),estimatedSeconds:output.filter(s=>!s.supplemental).reduce((a,s)=>a+s.estimatedSeconds,0),supplementEstimatedSeconds:output.filter(s=>s.supplemental).reduce((a,s)=>a+s.estimatedSeconds,0)});
 }
 fs.mkdirSync('materials',{recursive:true});
 fs.writeFileSync('course.json',JSON.stringify(course,null,2));
@@ -82,7 +83,7 @@ const sourceSha256=crypto.createHash('sha256').update(fs.readFileSync('course.js
 for(const l of course.lectures){
  const text=`# ${discipline}\n\n${specialty}\n\nМДК 01.01 · Лекция ${l.number}. ${l.title}\n\nПлан: 120 минут. Учебный проект: «Проектный навигатор».\n\n`+l.slides.map(s=>`<a id="${s.id}"></a>
 
-## Слайд ${s.number}. ${s.title} (${s.id})\n\nПлановое время: ${s.plannedSeconds} с. Блок: ${s.blockTitle}.\n\n### Текст на экране\n\n${s.body}\n\n### Визуальный материал\n\n${s.visualDescription}${s.learning?'\n\nИнтерактивная схема: '+s.learning.title+'. Исходные условия и сценарии: ' +s.learning.scenarios.map(x=>x.label+': '+x.input).join(' '): ''}\n\n### Текст выступления\n\n${s.script}\n\n### Указания ведущему\n\n${s.hint||'Сначала назовите элементы, затем прочитайте подписанные связи или строки в указанном порядке.'} Предусмотрено ${s.pauseSeconds} с на показ подписанных элементов.\n\n### Связи\n\n${s.links}\n\n### Источники\n\n${s.sources.length?s.sources.map(u=>`- ${u}`).join('\n'):'Авторский разбор согласованного учебного примера.'}\n\n`).join('');
+## Слайд ${s.number}. ${s.title} (${s.id})\n\n${s.supplemental?'Самостоятельное дополнение вне основного 120-минутного плана.':'Плановое время: '+s.plannedSeconds+' с.'} Блок: ${s.blockTitle}.\n\n### Текст на экране\n\n${s.body}\n\n### Визуальный материал\n\n${s.visualDescription}${s.learning?'\n\nИнтерактивная схема: '+s.learning.title+'. Исходные условия и сценарии: ' +s.learning.scenarios.map(x=>x.label+': '+x.input).join(' '): ''}\n\n### Текст выступления\n\n${s.script}\n\n### Указания ведущему\n\n${s.hint||'Сначала назовите элементы, затем прочитайте подписанные связи или строки в указанном порядке.'} Предусмотрено ${s.pauseSeconds} с на показ подписанных элементов.\n\n### Связи\n\n${s.links}\n\n### Источники\n\n${s.sources.length?s.sources.map(u=>`- ${u}`).join('\n'):'Авторский разбор согласованного учебного примера.'}\n\n`).join('');
  fs.writeFileSync(`materials/webinar-${l.number}-script.md`,text);
  const intro=`# ${discipline}\n\nМДК 01.01 · Лекция ${l.number}. ${l.title}\n\n`;
  const teacher=intro+l.slides.map(s=>`<a id="${s.id}"></a>\n\n## Слайд ${s.number}. ${s.title}\n\n${s.script}\n\n${s.visual.type==='bibliography'?s.visual.books.map(b=>`${b.citation} [Открыть источник](${b.url}).`).join('\n\n'):''}${s.visual.type==='resources'?`[Материалы занятия](${s.visual.url}).\n\n`:''}`).join('');
