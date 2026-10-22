@@ -6,9 +6,12 @@ try{
  const base=process.env.SITE_URL||'http://127.0.0.1:4176/';
  for(let n=1;n<=4;n++){
   await page.goto(`${base}?webinar=${n}&mode=print`);
-  await page.waitForSelector('.print-slide:nth-of-type(60)');
+  await page.waitForSelector('.print-slide:last-of-type');
   await page.evaluate(()=>document.fonts.ready);
-  await page.pdf({path:`materials/webinar-${n}.pdf`,format:'A4',landscape:true,printBackground:true,preferCSSPageSize:true});
+  await page.emulateMedia({media:'print'});
+  await page.evaluate(()=>window.dispatchEvent(new Event('resize')));
+  await page.waitForTimeout(100);
+  await page.pdf({path:`materials/webinar-${n}.pdf`,printBackground:true,preferCSSPageSize:true});
   fs.mkdirSync('output/pdf',{recursive:true});
   fs.copyFileSync(`materials/webinar-${n}.pdf`,`output/pdf/webinar-${n}.pdf`);
   console.log(`PDF вебинара ${n} сформирован.`);

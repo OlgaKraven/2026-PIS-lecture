@@ -1,6 +1,6 @@
 {
   "name": "2026-pis-lecture",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -8,7 +8,11 @@
     "check": "node scripts/check.mjs",
     "build": "npm run generate && npm run check && node scripts/build.mjs",
     "dev": "node scripts/serve.mjs",
-    "preview": "node scripts/serve.mjs dist"
+    "preview": "node scripts/serve.mjs dist",
+    "audit": "node scripts/review.mjs",
+    "pdf": "node scripts/export-pdf.mjs"
   },
-  "engines": { "node": ">=22" }
+  "engines": {
+    "node": ">=22"
+  }
 }

@@ -1,0 +1,405 @@
+{
+  "schemaVersion": 1,
+  "sourceKind": "local",
+  "sourceFile": "../course.json",
+  "sourceSha256": "0ccc2f2715a6947d169d2f8eba506f040893876c677ff2ec76c181583dbbc616",
+  "sourceVersion": "pis-2026.10.23-v2",
+  "lectureId": "webinar-1",
+  "moduleCode": "МДК 01.01",
+  "documents": {
+    "presenter": "webinar-1-script.md",
+    "teacher": "webinar-1-teacher.md"
+  },
+  "slides": [
+    {
+      "slideId": "З1-С01",
+      "title": "Анализ задачи и проектирование информационного ресурса",
+      "displayNumber": 1,
+      "anchor": "З1-С01"
+    },
+    {
+      "slideId": "З1-В01",
+      "title": "Цель и результаты занятия",
+      "displayNumber": 2,
+      "anchor": "З1-В01"
+    },
+    {
+      "slideId": "З1-С02",
+      "title": "Вопросы темы",
+      "displayNumber": 3,
+      "anchor": "З1-С02"
+    },
+    {
+      "slideId": "З1-Л01",
+      "title": "Основная литература",
+      "displayNumber": 4,
+      "anchor": "З1-Л01"
+    },
+    {
+      "slideId": "З1-Л02",
+      "title": "Дополнительная литература",
+      "displayNumber": 5,
+      "anchor": "З1-Л02"
+    },
+    {
+      "slideId": "З1-С03",
+      "title": "Информационный ресурс",
+      "displayNumber": 6,
+      "anchor": "З1-С03"
+    },
+    {
+      "slideId": "З1-С04",
+      "title": "Особенности веб-приложения",
+      "displayNumber": 7,
+      "anchor": "З1-С04"
+    },
+    {
+      "slideId": "З1-С05",
+      "title": "Учебный сервис «Проектный навигатор»",
+      "displayNumber": 8,
+      "anchor": "З1-С05"
+    },
+    {
+      "slideId": "З1-С06",
+      "title": "Исходная проблема",
+      "displayNumber": 9,
+      "anchor": "З1-С06"
+    },
+    {
+      "slideId": "З1-С07",
+      "title": "Сбор заявок через сообщения",
+      "displayNumber": 10,
+      "anchor": "З1-С07"
+    },
+    {
+      "slideId": "З1-С08",
+      "title": "Потерянное обращение",
+      "displayNumber": 11,
+      "anchor": "З1-С08"
+    },
+    {
+      "slideId": "З1-С09",
+      "title": "Повторные заявки",
+      "displayNumber": 12,
+      "anchor": "З1-С09"
+    },
+    {
+      "slideId": "З1-С10",
+      "title": "Неясный статус",
+      "displayNumber": 13,
+      "anchor": "З1-С10"
+    },
+    {
+      "slideId": "З1-С11",
+      "title": "Причины затруднений",
+      "displayNumber": 14,
+      "anchor": "З1-С11"
+    },
+    {
+      "slideId": "З1-С12",
+      "title": "Ожидаемый результат автоматизации",
+      "displayNumber": 15,
+      "anchor": "З1-С12"
+    },
+    {
+      "slideId": "З1-С13",
+      "title": "Границы и процессы",
+      "displayNumber": 16,
+      "anchor": "З1-С13"
+    },
+    {
+      "slideId": "З1-С14",
+      "title": "Пользователи и их цели",
+      "displayNumber": 17,
+      "anchor": "З1-С14"
+    },
+    {
+      "slideId": "З1-С15",
+      "title": "Заинтересованные стороны",
+      "displayNumber": 18,
+      "anchor": "З1-С15"
+    },
+    {
+      "slideId": "З1-С16",
+      "title": "Внешнее окружение",
+      "displayNumber": 19,
+      "anchor": "З1-С16"
+    },
+    {
+      "slideId": "З1-С17",
+      "title": "Контекстная схема",
+      "displayNumber": 20,
+      "anchor": "З1-С17"
+    },
+    {
+      "slideId": "З1-С18",
+      "title": "Текущий процесс",
+      "displayNumber": 21,
+      "anchor": "З1-С18"
+    },
+    {
+      "slideId": "З1-С19",
+      "title": "Предлагаемый процесс",
+      "displayNumber": 22,
+      "anchor": "З1-С19"
+    },
+    {
+      "slideId": "З1-С20",
+      "title": "Чтение модели процесса",
+      "displayNumber": 23,
+      "anchor": "З1-С20"
+    },
+    {
+      "slideId": "З1-С21",
+      "title": "Требования и приёмка",
+      "displayNumber": 24,
+      "anchor": "З1-С21"
+    },
+    {
+      "slideId": "З1-С22",
+      "title": "Источники требований",
+      "displayNumber": 25,
+      "anchor": "З1-С22"
+    },
+    {
+      "slideId": "З1-С23",
+      "title": "Функциональные требования",
+      "displayNumber": 26,
+      "anchor": "З1-С23"
+    },
+    {
+      "slideId": "З1-С24",
+      "title": "Требования к качеству",
+      "displayNumber": 27,
+      "anchor": "З1-С24"
+    },
+    {
+      "slideId": "З1-С25",
+      "title": "Измеримость требования",
+      "displayNumber": 28,
+      "anchor": "З1-С25"
+    },
+    {
+      "slideId": "З1-С26",
+      "title": "Разбор жалобы о потерянных заявках",
+      "displayNumber": 29,
+      "anchor": "З1-С26"
+    },
+    {
+      "slideId": "З1-С27",
+      "title": "Критерий приёмки ФТ-01",
+      "displayNumber": 30,
+      "anchor": "З1-С27"
+    },
+    {
+      "slideId": "З1-С28",
+      "title": "Реестр требований",
+      "displayNumber": 31,
+      "anchor": "З1-С28"
+    },
+    {
+      "slideId": "З1-С29",
+      "title": "Сценарии, права и состояния",
+      "displayNumber": 32,
+      "anchor": "З1-С29"
+    },
+    {
+      "slideId": "З1-С30",
+      "title": "Альтернативные ситуации",
+      "displayNumber": 33,
+      "anchor": "З1-С30"
+    },
+    {
+      "slideId": "З1-С31",
+      "title": "Повторная заявка",
+      "displayNumber": 34,
+      "anchor": "З1-С31"
+    },
+    {
+      "slideId": "З1-С32",
+      "title": "Закрытый проект",
+      "displayNumber": 35,
+      "anchor": "З1-С32"
+    },
+    {
+      "slideId": "З1-С33",
+      "title": "Права пользователей",
+      "displayNumber": 36,
+      "anchor": "З1-С33"
+    },
+    {
+      "slideId": "З1-С34",
+      "title": "Состояния заявки",
+      "displayNumber": 37,
+      "anchor": "З1-С34"
+    },
+    {
+      "slideId": "З1-С35",
+      "title": "Допустимые переходы",
+      "displayNumber": 38,
+      "anchor": "З1-С35"
+    },
+    {
+      "slideId": "З1-С36",
+      "title": "Итоговые правила заявки",
+      "displayNumber": 39,
+      "anchor": "З1-С36"
+    },
+    {
+      "slideId": "З1-С37",
+      "title": "Жизненный цикл",
+      "displayNumber": 40,
+      "anchor": "З1-С37"
+    },
+    {
+      "slideId": "З1-С38",
+      "title": "Этап анализа",
+      "displayNumber": 41,
+      "anchor": "З1-С38"
+    },
+    {
+      "slideId": "З1-С39",
+      "title": "Этап проектирования",
+      "displayNumber": 42,
+      "anchor": "З1-С39"
+    },
+    {
+      "slideId": "З1-С40",
+      "title": "Этап разработки",
+      "displayNumber": 43,
+      "anchor": "З1-С40"
+    },
+    {
+      "slideId": "З1-С41",
+      "title": "Этап проверки",
+      "displayNumber": 44,
+      "anchor": "З1-С41"
+    },
+    {
+      "slideId": "З1-С42",
+      "title": "Развёртывание",
+      "displayNumber": 45,
+      "anchor": "З1-С42"
+    },
+    {
+      "slideId": "З1-С43",
+      "title": "Сопровождение",
+      "displayNumber": 46,
+      "anchor": "З1-С43"
+    },
+    {
+      "slideId": "З1-С44",
+      "title": "Изменение требований после запуска",
+      "displayNumber": 47,
+      "anchor": "З1-С44"
+    },
+    {
+      "slideId": "З1-С45",
+      "title": "Первая версия и архитектура",
+      "displayNumber": 48,
+      "anchor": "З1-С45"
+    },
+    {
+      "slideId": "З1-С46",
+      "title": "Отложенные возможности",
+      "displayNumber": 49,
+      "anchor": "З1-С46"
+    },
+    {
+      "slideId": "З1-С47",
+      "title": "Общая архитектура",
+      "displayNumber": 50,
+      "anchor": "З1-С47"
+    },
+    {
+      "slideId": "З1-С48",
+      "title": "Браузер",
+      "displayNumber": 51,
+      "anchor": "З1-С48"
+    },
+    {
+      "slideId": "З1-С49",
+      "title": "Сервер",
+      "displayNumber": 52,
+      "anchor": "З1-С49"
+    },
+    {
+      "slideId": "З1-С50",
+      "title": "База данных",
+      "displayNumber": 53,
+      "anchor": "З1-С50"
+    },
+    {
+      "slideId": "З1-С51",
+      "title": "Принцип выбора технологий",
+      "displayNumber": 54,
+      "anchor": "З1-С51"
+    },
+    {
+      "slideId": "З1-С52",
+      "title": "Риски и зависимости",
+      "displayNumber": 55,
+      "anchor": "З1-С52"
+    },
+    {
+      "slideId": "З1-С53",
+      "title": "Связь требований и решений",
+      "displayNumber": 56,
+      "anchor": "З1-С53"
+    },
+    {
+      "slideId": "З1-С54",
+      "title": "Паспорт проекта",
+      "displayNumber": 57,
+      "anchor": "З1-С54"
+    },
+    {
+      "slideId": "З1-С55",
+      "title": "Разбор изменения",
+      "displayNumber": 58,
+      "anchor": "З1-С55"
+    },
+    {
+      "slideId": "З1-С56",
+      "title": "Затрагиваемые части системы",
+      "displayNumber": 59,
+      "anchor": "З1-С56"
+    },
+    {
+      "slideId": "З1-С57",
+      "title": "Новые правила для файлов",
+      "displayNumber": 60,
+      "anchor": "З1-С57"
+    },
+    {
+      "slideId": "З1-С58",
+      "title": "Дополнительная сложность",
+      "displayNumber": 61,
+      "anchor": "З1-С58"
+    },
+    {
+      "slideId": "З1-С59",
+      "title": "Решение отложить вложения",
+      "displayNumber": 62,
+      "anchor": "З1-С59"
+    },
+    {
+      "slideId": "З1-И01",
+      "title": "Итоги занятия",
+      "displayNumber": 63,
+      "anchor": "З1-И01"
+    },
+    {
+      "slideId": "З1-М01",
+      "title": "Материалы занятия",
+      "displayNumber": 64,
+      "anchor": "З1-М01"
+    },
+    {
+      "slideId": "З1-С60",
+      "title": "Разбор вопросов",
+      "displayNumber": 65,
+      "anchor": "З1-С60"
+    }
+  ]
+}
