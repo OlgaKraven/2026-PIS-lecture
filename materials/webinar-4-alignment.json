@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "0ccc2f2715a6947d169d2f8eba506f040893876c677ff2ec76c181583dbbc616",
-  "sourceVersion": "pis-2026.10.23-v2",
+  "sourceSha256": "5a3938851c25d66112ff4e60b0961cbbc2e69f68f9d98b40a6a672b0674a1e40",
+  "sourceVersion": "pis-2026.10.23-v3",
   "lectureId": "webinar-4",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -30,374 +30,374 @@
       "anchor": "З4-С02"
     },
     {
+      "slideId": "З4-М01",
+      "title": "Материалы к занятиям",
+      "displayNumber": 4,
+      "anchor": "З4-М01"
+    },
+    {
       "slideId": "З4-Л01",
       "title": "Основная литература",
-      "displayNumber": 4,
+      "displayNumber": 5,
       "anchor": "З4-Л01"
     },
     {
       "slideId": "З4-Л02",
       "title": "Дополнительная литература",
-      "displayNumber": 5,
+      "displayNumber": 6,
       "anchor": "З4-Л02"
     },
     {
       "slideId": "З4-С03",
       "title": "Качество",
-      "displayNumber": 6,
+      "displayNumber": 7,
       "anchor": "З4-С03"
     },
     {
       "slideId": "З4-С04",
       "title": "Виды дефектов",
-      "displayNumber": 7,
+      "displayNumber": 8,
       "anchor": "З4-С04"
     },
     {
       "slideId": "З4-С05",
       "title": "Приоритет исправления",
-      "displayNumber": 8,
+      "displayNumber": 9,
       "anchor": "З4-С05"
     },
     {
       "slideId": "З4-С06",
       "title": "Проверки приложения",
-      "displayNumber": 9,
+      "displayNumber": 10,
       "anchor": "З4-С06"
     },
     {
       "slideId": "З4-С07",
       "title": "Негативная проверка",
-      "displayNumber": 10,
+      "displayNumber": 11,
       "anchor": "З4-С07"
     },
     {
       "slideId": "З4-С08",
       "title": "Граничные значения мотивации",
-      "displayNumber": 11,
+      "displayNumber": 12,
       "anchor": "З4-С08"
     },
     {
       "slideId": "З4-С09",
       "title": "Модульная проверка",
-      "displayNumber": 12,
+      "displayNumber": 13,
       "anchor": "З4-С09"
     },
     {
       "slideId": "З4-С10",
       "title": "Интеграционная проверка",
-      "displayNumber": 13,
+      "displayNumber": 14,
       "anchor": "З4-С10"
     },
     {
       "slideId": "З4-С11",
       "title": "Сквозной сценарий",
-      "displayNumber": 14,
+      "displayNumber": 15,
       "anchor": "З4-С11"
     },
     {
       "slideId": "З4-С12",
       "title": "Проверка прав доступа",
-      "displayNumber": 15,
+      "displayNumber": 16,
       "anchor": "З4-С12"
     },
     {
       "slideId": "З4-С13",
       "title": "Проверка повторной подачи",
-      "displayNumber": 16,
+      "displayNumber": 17,
       "anchor": "З4-С13"
     },
     {
       "slideId": "З4-С14",
       "title": "Регрессионная проверка",
-      "displayNumber": 17,
+      "displayNumber": 18,
       "anchor": "З4-С14"
     },
     {
       "slideId": "З4-С15",
       "title": "Ожидаемый и фактический результат",
-      "displayNumber": 18,
+      "displayNumber": 19,
       "anchor": "З4-С15"
     },
     {
       "slideId": "З4-С16",
       "title": "Производительность",
-      "displayNumber": 19,
+      "displayNumber": 20,
       "anchor": "З4-С16"
     },
     {
       "slideId": "З4-С17",
       "title": "Измерение времени",
-      "displayNumber": 20,
+      "displayNumber": 21,
       "anchor": "З4-С17"
     },
     {
       "slideId": "З4-С18",
       "title": "Сетевая часть времени",
-      "displayNumber": 21,
+      "displayNumber": 22,
       "anchor": "З4-С18"
     },
     {
       "slideId": "З4-С19",
       "title": "Обращения к базе",
-      "displayNumber": 22,
+      "displayNumber": 23,
       "anchor": "З4-С19"
     },
     {
       "slideId": "З4-С20",
       "title": "Индексы",
-      "displayNumber": 23,
+      "displayNumber": 24,
       "anchor": "З4-С20"
     },
     {
       "slideId": "З4-С21",
       "title": "Объём ответа",
-      "displayNumber": 24,
+      "displayNumber": 25,
       "anchor": "З4-С21"
     },
     {
       "slideId": "З4-С22",
       "title": "Кеширование и актуальность",
-      "displayNumber": 25,
+      "displayNumber": 26,
       "anchor": "З4-С22"
     },
     {
       "slideId": "З4-С23",
       "title": "Сравнение оптимизации",
-      "displayNumber": 26,
+      "displayNumber": 27,
       "anchor": "З4-С23"
     },
     {
       "slideId": "З4-С24",
       "title": "Наблюдение и сбои",
-      "displayNumber": 27,
+      "displayNumber": 28,
       "anchor": "З4-С24"
     },
     {
       "slideId": "З4-С25",
       "title": "Логи",
-      "displayNumber": 28,
+      "displayNumber": 29,
       "anchor": "З4-С25"
     },
     {
       "slideId": "З4-С26",
       "title": "Метрики",
-      "displayNumber": 29,
+      "displayNumber": 30,
       "anchor": "З4-С26"
     },
     {
       "slideId": "З4-С27",
       "title": "Путь запроса",
-      "displayNumber": 30,
+      "displayNumber": 31,
       "anchor": "З4-С27"
     },
     {
       "slideId": "З4-С28",
       "title": "Идентификатор запроса",
-      "displayNumber": 31,
+      "displayNumber": 32,
       "anchor": "З4-С28"
     },
     {
       "slideId": "З4-С29",
       "title": "Уведомление о сбое",
-      "displayNumber": 32,
+      "displayNumber": 33,
       "anchor": "З4-С29"
     },
     {
       "slideId": "З4-С30",
       "title": "Инцидент: ответ не дошёл",
-      "displayNumber": 33,
+      "displayNumber": 34,
       "anchor": "З4-С30"
     },
     {
       "slideId": "З4-С31",
       "title": "Проверка восстановления",
-      "displayNumber": 34,
+      "displayNumber": 35,
       "anchor": "З4-С31"
     },
     {
       "slideId": "З4-С32",
       "title": "Пользовательская аналитика",
-      "displayNumber": 35,
+      "displayNumber": 36,
       "anchor": "З4-С32"
     },
     {
       "slideId": "З4-С33",
       "title": "События аналитики",
-      "displayNumber": 36,
+      "displayNumber": 37,
       "anchor": "З4-С33"
     },
     {
       "slideId": "З4-С34",
       "title": "Уникальные пользователи",
-      "displayNumber": 37,
+      "displayNumber": 38,
       "anchor": "З4-С34"
     },
     {
       "slideId": "З4-С35",
       "title": "Период и группа измерения",
-      "displayNumber": 38,
+      "displayNumber": 39,
       "anchor": "З4-С35"
     },
     {
       "slideId": "З4-С36",
       "title": "Учебная воронка",
-      "displayNumber": 39,
+      "displayNumber": 40,
       "anchor": "З4-С36"
     },
     {
       "slideId": "З4-С37",
       "title": "Ограничения воронки",
-      "displayNumber": 40,
+      "displayNumber": 41,
       "anchor": "З4-С37"
     },
     {
       "slideId": "З4-С38",
       "title": "Выбор следующего улучшения",
-      "displayNumber": 41,
+      "displayNumber": 42,
       "anchor": "З4-С38"
     },
     {
       "slideId": "З4-С39",
       "title": "Уведомления",
-      "displayNumber": 42,
+      "displayNumber": 43,
       "anchor": "З4-С39"
     },
     {
       "slideId": "З4-С40",
       "title": "Уведомление о новой заявке",
-      "displayNumber": 43,
+      "displayNumber": 44,
       "anchor": "З4-С40"
     },
     {
       "slideId": "З4-С41",
       "title": "Порядок интеграционного вызова",
-      "displayNumber": 44,
+      "displayNumber": 45,
       "anchor": "З4-С41"
     },
     {
       "slideId": "З4-С42",
       "title": "Успешная доставка",
-      "displayNumber": 45,
+      "displayNumber": 46,
       "anchor": "З4-С42"
     },
     {
       "slideId": "З4-С43",
       "title": "Недоступность внешнего сервиса",
-      "displayNumber": 46,
+      "displayNumber": 47,
       "anchor": "З4-С43"
     },
     {
       "slideId": "З4-С44",
       "title": "Регистрация сбоя доставки",
-      "displayNumber": 47,
+      "displayNumber": 48,
       "anchor": "З4-С44"
     },
     {
       "slideId": "З4-С45",
       "title": "Повторная отправка",
-      "displayNumber": 48,
+      "displayNumber": 49,
       "anchor": "З4-С45"
     },
     {
       "slideId": "З4-С46",
       "title": "Граница ответственности интеграции",
-      "displayNumber": 49,
+      "displayNumber": 50,
       "anchor": "З4-С46"
     },
     {
       "slideId": "З4-С47",
       "title": "Развитие и поиск",
-      "displayNumber": 50,
+      "displayNumber": 51,
       "anchor": "З4-С47"
     },
     {
       "slideId": "З4-С48",
       "title": "Выбор подхода по задаче",
-      "displayNumber": 51,
+      "displayNumber": 52,
       "anchor": "З4-С48"
     },
     {
       "slideId": "З4-С49",
       "title": "Проблема поиска проектов",
-      "displayNumber": 52,
+      "displayNumber": 53,
       "anchor": "З4-С49"
     },
     {
       "slideId": "З4-С50",
       "title": "Гипотеза улучшения",
-      "displayNumber": 53,
+      "displayNumber": 54,
       "anchor": "З4-С50"
     },
     {
       "slideId": "З4-С51",
       "title": "Новые входные данные поиска",
-      "displayNumber": 54,
+      "displayNumber": 55,
       "anchor": "З4-С51"
     },
     {
       "slideId": "З4-С52",
       "title": "Схема интеллектуального поиска",
-      "displayNumber": 55,
+      "displayNumber": 56,
       "anchor": "З4-С52"
     },
     {
       "slideId": "З4-С53",
       "title": "Экран прототипа поиска",
-      "displayNumber": 56,
+      "displayNumber": 57,
       "anchor": "З4-С53"
     },
     {
       "slideId": "З4-С54",
       "title": "Объяснение результата",
-      "displayNumber": 57,
+      "displayNumber": 58,
       "anchor": "З4-С54"
     },
     {
       "slideId": "З4-С55",
       "title": "Ошибочная рекомендация",
-      "displayNumber": 58,
+      "displayNumber": 59,
       "anchor": "З4-С55"
     },
     {
       "slideId": "З4-С56",
       "title": "Ограничения прототипа",
-      "displayNumber": 59,
+      "displayNumber": 60,
       "anchor": "З4-С56"
     },
     {
       "slideId": "З4-С57",
       "title": "Проверка полезности поиска",
-      "displayNumber": 60,
+      "displayNumber": 61,
       "anchor": "З4-С57"
     },
     {
       "slideId": "З4-С58",
       "title": "Готовность к выпуску",
-      "displayNumber": 61,
+      "displayNumber": 62,
       "anchor": "З4-С58"
     },
     {
       "slideId": "З4-С59",
       "title": "Памятка сопровождения",
-      "displayNumber": 62,
+      "displayNumber": 63,
       "anchor": "З4-С59"
     },
     {
       "slideId": "З4-И01",
       "title": "Итоги занятия",
-      "displayNumber": 63,
+      "displayNumber": 64,
       "anchor": "З4-И01"
     },
     {
-      "slideId": "З4-М01",
-      "title": "Материалы занятия",
-      "displayNumber": 64,
-      "anchor": "З4-М01"
-    },
-    {
       "slideId": "З4-С60",
-      "title": "Разбор вопросов",
+      "title": "Вопросы от аудитории",
       "displayNumber": 65,
       "anchor": "З4-С60"
     }

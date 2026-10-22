@@ -6,6 +6,7 @@ assert.equal(course.discipline,'Проектирование информаци�
 const ids=new Set();let models=0,scenarios=0;
 for(const l of course.lectures){
  assert.equal(l.slides.length,65);assert.equal(l.totalSeconds,7200);
+ assert.equal(l.slides[3].kind,'resources');assert.equal(l.slides[3].title,'Материалы к занятиям');assert.equal(l.slides[3].body,'');assert.equal(l.slides.at(-1).title,'Вопросы от аудитории');assert.equal(l.slides.at(-1).body,'');
  assert.equal(l.slides[0].number,1);assert.equal(l.slides.at(-1).kind,'questions');
  assert.equal(l.slides.filter(s=>s.kind==='section').length,8);
  assert.deepEqual(l.slides.filter(s=>s.kind==='literature').map(s=>s.title),['Основная литература','Дополнительная литература']);
@@ -13,7 +14,7 @@ for(const l of course.lectures){
  let elapsed=0;
  for(const [i,s] of l.slides.entries()){
   assert.ok(!ids.has(s.id),s.id);ids.add(s.id);assert.equal(s.number,i+1);assert.ok(s.title&&s.script&&s.hint&&s.visualDescription);
-  if(s.kind!=='literature')assert.ok(s.body,s.id);
+  if(!['literature','resources','questions'].includes(s.kind))assert.ok(s.body,s.id);
   assert.equal(s.startSeconds,elapsed);elapsed+=s.plannedSeconds;assert.ok(s.plannedSeconds>s.pauseSeconds,s.id);assert.ok(s.requiredWpm>=65&&s.requiredWpm<=150,`${s.id}: ${s.requiredWpm}`);
   for(const url of s.sources)assert.equal(new URL(url).protocol,'https:');
   if(s.visual.type==='bibliography')for(const book of s.visual.books){assert.ok(fs.existsSync(book.qr));assert.equal(s.body,'');}
