@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "e53c43c4cf17480a32ee6c71f9ee1786704d9f8b7061c6470011aa818b7322a5",
-  "sourceVersion": "pis-2026.10.23-v4",
+  "sourceSha256": "e47e2a529d45a17de9c93d76eb13bdae06bb3590e11ca1bc436871730cd772e6",
+  "sourceVersion": "pis-2026.10.23-v5",
   "lectureId": "webinar-3",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -18,16 +18,16 @@
       "anchor": "З3-С01"
     },
     {
-      "slideId": "З3-В01",
-      "title": "Цель и результаты занятия",
+      "slideId": "З3-Л01",
+      "title": "Основная литература",
       "displayNumber": 2,
-      "anchor": "З3-В01"
+      "anchor": "З3-Л01"
     },
     {
-      "slideId": "З3-С02",
-      "title": "Вопросы темы",
+      "slideId": "З3-Л02",
+      "title": "Дополнительная литература",
       "displayNumber": 3,
-      "anchor": "З3-С02"
+      "anchor": "З3-Л02"
     },
     {
       "slideId": "З3-М01",
@@ -36,465 +36,459 @@
       "anchor": "З3-М01"
     },
     {
-      "slideId": "З3-Л01",
-      "title": "Основная литература",
+      "slideId": "З3-С02",
+      "title": "Вопросы темы",
       "displayNumber": 5,
-      "anchor": "З3-Л01"
-    },
-    {
-      "slideId": "З3-Л02",
-      "title": "Дополнительная литература",
-      "displayNumber": 6,
-      "anchor": "З3-Л02"
+      "anchor": "З3-С02"
     },
     {
       "slideId": "З3-С03",
       "title": "Части приложения",
-      "displayNumber": 7,
+      "displayNumber": 6,
       "anchor": "З3-С03"
     },
     {
       "slideId": "З3-С04",
       "title": "Ответственность сервера",
-      "displayNumber": 8,
+      "displayNumber": 7,
       "anchor": "З3-С04"
     },
     {
       "slideId": "З3-С05",
       "title": "Роль базы в обмене",
-      "displayNumber": 9,
+      "displayNumber": 8,
       "anchor": "З3-С05"
     },
     {
       "slideId": "З3-П1",
       "title": "Практика: Части приложения",
-      "displayNumber": 10,
+      "displayNumber": 9,
       "anchor": "З3-П1"
     },
     {
       "slideId": "З3-Т1",
       "title": "Самопроверка · Вопрос 1",
-      "displayNumber": 11,
+      "displayNumber": 10,
       "anchor": "З3-Т1"
     },
     {
       "slideId": "З3-С06",
       "title": "HTTP и JSON",
-      "displayNumber": 12,
+      "displayNumber": 11,
       "anchor": "З3-С06"
     },
     {
       "slideId": "З3-С07",
       "title": "Адрес запроса",
-      "displayNumber": 13,
+      "displayNumber": 12,
       "anchor": "З3-С07"
     },
     {
       "slideId": "З3-С08",
       "title": "Метод запроса",
-      "displayNumber": 14,
+      "displayNumber": 13,
       "anchor": "З3-С08"
     },
     {
       "slideId": "З3-С09",
       "title": "Заголовки",
-      "displayNumber": 15,
+      "displayNumber": 14,
       "anchor": "З3-С09"
     },
     {
       "slideId": "З3-С10",
       "title": "Тело запроса",
-      "displayNumber": 16,
+      "displayNumber": 15,
       "anchor": "З3-С10"
     },
     {
       "slideId": "З3-С11",
       "title": "Ответ сервера",
-      "displayNumber": 17,
+      "displayNumber": 16,
       "anchor": "З3-С11"
     },
     {
       "slideId": "З3-С12",
       "title": "Формат JSON",
-      "displayNumber": 18,
+      "displayNumber": 17,
       "anchor": "З3-С12"
     },
     {
       "slideId": "З3-С13",
       "title": "Группы результатов",
-      "displayNumber": 19,
+      "displayNumber": 18,
       "anchor": "З3-С13"
     },
     {
       "slideId": "З3-П2",
       "title": "Практика: Запрос и ответ",
-      "displayNumber": 20,
+      "displayNumber": 19,
       "anchor": "З3-П2"
     },
     {
       "slideId": "З3-Т2",
       "title": "Самопроверка · Вопрос 2",
-      "displayNumber": 21,
+      "displayNumber": 20,
       "anchor": "З3-Т2"
     },
     {
       "slideId": "З3-С14",
       "title": "Договор API",
-      "displayNumber": 22,
+      "displayNumber": 21,
       "anchor": "З3-С14"
     },
     {
       "slideId": "З3-С15",
       "title": "Получение каталога",
-      "displayNumber": 23,
+      "displayNumber": 22,
       "anchor": "З3-С15"
     },
     {
       "slideId": "З3-С16",
       "title": "Получение проекта",
-      "displayNumber": 24,
+      "displayNumber": 23,
       "anchor": "З3-С16"
     },
     {
       "slideId": "З3-С17",
       "title": "Создание заявки",
-      "displayNumber": 25,
+      "displayNumber": 24,
       "anchor": "З3-С17"
     },
     {
       "slideId": "З3-С18",
       "title": "Получение своих заявок",
-      "displayNumber": 26,
+      "displayNumber": 25,
       "anchor": "З3-С18"
     },
     {
       "slideId": "З3-С19",
       "title": "Получение заявок проекта",
-      "displayNumber": 27,
+      "displayNumber": 26,
       "anchor": "З3-С19"
     },
     {
       "slideId": "З3-С20",
       "title": "Решение по заявке",
-      "displayNumber": 28,
+      "displayNumber": 27,
       "anchor": "З3-С20"
     },
     {
       "slideId": "З3-С21",
       "title": "Единый формат ошибок",
-      "displayNumber": 29,
+      "displayNumber": 28,
       "anchor": "З3-С21"
     },
     {
       "slideId": "З3-П3",
       "title": "Практика: Договор API",
-      "displayNumber": 30,
+      "displayNumber": 29,
       "anchor": "З3-П3"
     },
     {
       "slideId": "З3-Т3",
       "title": "Самопроверка · Вопрос 3",
-      "displayNumber": 31,
+      "displayNumber": 30,
       "anchor": "З3-Т3"
     },
     {
       "slideId": "З3-С22",
       "title": "Обработка на сервере",
-      "displayNumber": 32,
+      "displayNumber": 31,
       "anchor": "З3-С22"
     },
     {
       "slideId": "З3-С23",
       "title": "Определение пользователя",
-      "displayNumber": 33,
+      "displayNumber": 32,
       "anchor": "З3-С23"
     },
     {
       "slideId": "З3-С24",
       "title": "Проверка входных данных",
-      "displayNumber": 34,
+      "displayNumber": 33,
       "anchor": "З3-С24"
     },
     {
       "slideId": "З3-С25",
       "title": "Проверка роли",
-      "displayNumber": 35,
+      "displayNumber": 34,
       "anchor": "З3-С25"
     },
     {
       "slideId": "З3-С26",
       "title": "Принадлежность проекта",
-      "displayNumber": 36,
+      "displayNumber": 35,
       "anchor": "З3-С26"
     },
     {
       "slideId": "З3-С27",
       "title": "Бизнес-правила",
-      "displayNumber": 37,
+      "displayNumber": 36,
       "anchor": "З3-С27"
     },
     {
       "slideId": "З3-С28",
       "title": "Обработка отказов",
-      "displayNumber": 38,
+      "displayNumber": 37,
       "anchor": "З3-С28"
     },
     {
       "slideId": "З3-С29",
       "title": "Формирование успешного ответа",
-      "displayNumber": 39,
+      "displayNumber": 38,
       "anchor": "З3-С29"
     },
     {
       "slideId": "З3-П4",
       "title": "Практика: Проверки сервера",
-      "displayNumber": 40,
+      "displayNumber": 39,
       "anchor": "З3-П4"
     },
     {
       "slideId": "З3-Т4",
       "title": "Самопроверка · Вопрос 4",
-      "displayNumber": 41,
+      "displayNumber": 40,
       "anchor": "З3-Т4"
     },
     {
       "slideId": "З3-С30",
       "title": "Работа с базой",
-      "displayNumber": 42,
+      "displayNumber": 41,
       "anchor": "З3-С30"
     },
     {
       "slideId": "З3-С31",
       "title": "Добавление записи",
-      "displayNumber": 43,
+      "displayNumber": 42,
       "anchor": "З3-С31"
     },
     {
       "slideId": "З3-С32",
       "title": "Связанные данные в SQL",
-      "displayNumber": 44,
+      "displayNumber": 43,
       "anchor": "З3-С32"
     },
     {
       "slideId": "З3-С33",
       "title": "Ограничения базы",
-      "displayNumber": 45,
+      "displayNumber": 44,
       "anchor": "З3-С33"
     },
     {
       "slideId": "З3-С34",
       "title": "Два одновременных запроса",
-      "displayNumber": 46,
+      "displayNumber": 45,
       "anchor": "З3-С34"
     },
     {
       "slideId": "З3-С35",
       "title": "Уникальная пара при конкуренции",
-      "displayNumber": 47,
+      "displayNumber": 46,
       "anchor": "З3-С35"
     },
     {
       "slideId": "З3-С36",
       "title": "Транзакция",
-      "displayNumber": 48,
+      "displayNumber": 47,
       "anchor": "З3-С36"
     },
     {
       "slideId": "З3-С37",
       "title": "Сохранение перед подтверждением",
-      "displayNumber": 49,
+      "displayNumber": 48,
       "anchor": "З3-С37"
     },
     {
       "slideId": "З3-П5",
       "title": "Практика: Конкуренция",
-      "displayNumber": 50,
+      "displayNumber": 49,
       "anchor": "З3-П5"
     },
     {
       "slideId": "З3-Т5",
       "title": "Самопроверка · Вопрос 5",
-      "displayNumber": 51,
+      "displayNumber": 50,
       "anchor": "З3-Т5"
     },
     {
       "slideId": "З3-С38",
       "title": "Путь заявки № 104",
-      "displayNumber": 52,
+      "displayNumber": 51,
       "anchor": "З3-С38"
     },
     {
       "slideId": "З3-С39",
       "title": "Путь заявки: запрос",
-      "displayNumber": 53,
+      "displayNumber": 52,
       "anchor": "З3-С39"
     },
     {
       "slideId": "З3-С40",
       "title": "Путь заявки: установленный пользователь",
-      "displayNumber": 54,
+      "displayNumber": 53,
       "anchor": "З3-С40"
     },
     {
       "slideId": "З3-С41",
       "title": "Путь заявки: проверка проекта",
-      "displayNumber": 55,
+      "displayNumber": 54,
       "anchor": "З3-С41"
     },
     {
       "slideId": "З3-С42",
       "title": "Путь заявки: проверка мотивации",
-      "displayNumber": 56,
+      "displayNumber": 55,
       "anchor": "З3-С42"
     },
     {
       "slideId": "З3-С43",
       "title": "Путь заявки: сохранение",
-      "displayNumber": 57,
+      "displayNumber": 56,
       "anchor": "З3-С43"
     },
     {
       "slideId": "З3-С44",
       "title": "Путь заявки: успешный ответ",
-      "displayNumber": 58,
+      "displayNumber": 57,
       "anchor": "З3-С44"
     },
     {
       "slideId": "З3-С45",
       "title": "Путь заявки: обновление интерфейса",
-      "displayNumber": 59,
+      "displayNumber": 58,
       "anchor": "З3-С45"
     },
     {
       "slideId": "З3-С46",
       "title": "Путь заявки: чтение Анной",
-      "displayNumber": 60,
+      "displayNumber": 59,
       "anchor": "З3-С46"
     },
     {
       "slideId": "З3-С47",
       "title": "Путь заявки: чтение Ириной",
-      "displayNumber": 61,
+      "displayNumber": 60,
       "anchor": "З3-С47"
     },
     {
       "slideId": "З3-П6",
       "title": "Практика: Фиксация и ответ",
-      "displayNumber": 62,
+      "displayNumber": 61,
       "anchor": "З3-П6"
     },
     {
       "slideId": "З3-Т6",
       "title": "Самопроверка · Вопрос 6",
-      "displayNumber": 63,
+      "displayNumber": 62,
       "anchor": "З3-Т6"
     },
     {
       "slideId": "З3-С48",
       "title": "Размещение приложения",
-      "displayNumber": 64,
+      "displayNumber": 63,
       "anchor": "З3-С48"
     },
     {
       "slideId": "З3-С49",
       "title": "Адрес приложения",
-      "displayNumber": 65,
+      "displayNumber": 64,
       "anchor": "З3-С49"
     },
     {
       "slideId": "З3-С50",
       "title": "Доменное имя",
-      "displayNumber": 66,
+      "displayNumber": 65,
       "anchor": "З3-С50"
     },
     {
       "slideId": "З3-С51",
       "title": "HTTPS",
-      "displayNumber": 67,
+      "displayNumber": 66,
       "anchor": "З3-С51"
     },
     {
       "slideId": "З3-С52",
       "title": "Процесс сервера",
-      "displayNumber": 68,
+      "displayNumber": 67,
       "anchor": "З3-С52"
     },
     {
       "slideId": "З3-С53",
       "title": "Подключение к базе",
-      "displayNumber": 69,
+      "displayNumber": 68,
       "anchor": "З3-С53"
     },
     {
       "slideId": "З3-С54",
       "title": "Конфигурация",
-      "displayNumber": 70,
+      "displayNumber": 69,
       "anchor": "З3-С54"
     },
     {
       "slideId": "З3-С55",
       "title": "Доступность компонентов",
-      "displayNumber": 71,
+      "displayNumber": 70,
       "anchor": "З3-С55"
     },
     {
       "slideId": "З3-П7",
       "title": "Практика: Конфигурация",
-      "displayNumber": 72,
+      "displayNumber": 71,
       "anchor": "З3-П7"
     },
     {
       "slideId": "З3-Т7",
       "title": "Самопроверка · Вопрос 7",
-      "displayNumber": 73,
+      "displayNumber": 72,
       "anchor": "З3-Т7"
     },
     {
       "slideId": "З3-С56",
       "title": "Выпуск версии",
-      "displayNumber": 74,
+      "displayNumber": 73,
       "anchor": "З3-С56"
     },
     {
       "slideId": "З3-С57",
       "title": "Подготовка настроек выпуска",
-      "displayNumber": 75,
+      "displayNumber": 74,
       "anchor": "З3-С57"
     },
     {
       "slideId": "З3-С58",
       "title": "Обновление структуры данных",
-      "displayNumber": 76,
+      "displayNumber": 75,
       "anchor": "З3-С58"
     },
     {
       "slideId": "З3-С59",
       "title": "Резервная копия",
-      "displayNumber": 77,
+      "displayNumber": 76,
       "anchor": "З3-С59"
     },
     {
       "slideId": "З3-П8",
       "title": "Практика: Готовность выпуска",
-      "displayNumber": 78,
+      "displayNumber": 77,
       "anchor": "З3-П8"
     },
     {
       "slideId": "З3-Т8",
       "title": "Самопроверка · Вопрос 8",
-      "displayNumber": 79,
+      "displayNumber": 78,
       "anchor": "З3-Т8"
     },
     {
       "slideId": "З3-И01",
       "title": "Итоги занятия",
-      "displayNumber": 80,
+      "displayNumber": 79,
       "anchor": "З3-И01"
     },
     {
       "slideId": "З3-С60",
       "title": "Вопросы от аудитории",
-      "displayNumber": 81,
+      "displayNumber": 80,
       "anchor": "З3-С60"
     }
   ]

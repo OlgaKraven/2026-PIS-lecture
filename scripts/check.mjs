@@ -5,8 +5,9 @@ const source=fs.readFileSync('course.json'),course=JSON.parse(source);
 assert.equal(course.discipline,'Проектирование информационных ресурсов');assert.equal(course.moduleCode,'МДК 01.01');assert.equal(course.lectures.length,4);
 const ids=new Set();let models=0,scenarios=0;
 for(const l of course.lectures){
- assert.equal(l.slides.length,81);assert.equal(l.totalSeconds,7200);
+ assert.equal(l.slides.length,80);assert.equal(l.totalSeconds,7200);
  assert.equal(l.slides[3].kind,'resources');assert.equal(l.slides[3].title,'Материалы к занятиям');assert.equal(l.slides[3].body,'');assert.equal(l.slides.at(-1).title,'Вопросы от аудитории');assert.equal(l.slides.at(-1).body,'');
+ assert.ok(!l.slides.some(s=>s.kind==='outcomes'||s.title==='Цель и результаты занятия'));assert.equal(l.slides[4].kind,'agenda');assert.equal(l.slides[5].kind,'section');assert.equal(l.slides[5].question,1);
  assert.equal(l.slides[0].number,1);assert.equal(l.slides.at(-1).kind,'questions');
  assert.equal(l.slides.filter(s=>s.kind==='section').length,8);
  assert.deepEqual(l.slides.filter(s=>s.kind==='literature').map(s=>s.title),['Основная литература','Дополнительная литература']);
@@ -28,7 +29,7 @@ for(const l of course.lectures){
  const presenter=fs.readFileSync(`materials/webinar-${l.number}-script.md`,'utf8'),teacher=fs.readFileSync(`materials/webinar-${l.number}-teacher.md`,'utf8');
  const map=JSON.parse(fs.readFileSync(`materials/webinar-${l.number}-alignment.json`));assert.equal(map.sourceSha256,crypto.createHash('sha256').update(source).digest('hex'));assert.deepEqual(map.slides.map(s=>s.slideId),l.slides.map(s=>s.id));
  for(const s of l.slides){assert.ok(presenter.includes(`<a id="${s.id}"></a>`));assert.ok(teacher.includes(`<a id="${s.id}"></a>`));assert.equal(map.slides[s.number-1].displayNumber,s.number);}
- console.log(`Лекция ${l.number}: 81 слайд; план 120 мин; расчёт ${(l.estimatedSeconds/60).toFixed(1)} мин; сценарий и текст привязаны ко всем ID.`);
+ console.log(`Лекция ${l.number}: 80 слайдов; план 120 мин; расчёт ${(l.estimatedSeconds/60).toFixed(1)} мин; сценарий и текст привязаны ко всем ID.`);
 }
 assert.ok(models>15);assert.ok(scenarios>25);
 for(const l of course.lectures){assert.equal(l.slides.filter(s=>s.quiz).length,8);assert.equal(l.slides.filter(s=>s.activity).length,8);for(const s of l.slides.filter(s=>s.quiz)){assert.ok(s.quiz.answer>=0&&s.quiz.answer<s.quiz.options.length);assert.equal(l.slides[s.number-2].kind,'practice');}}

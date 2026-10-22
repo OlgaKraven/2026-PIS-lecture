@@ -40,7 +40,7 @@ try{
      if(s.quiz){await page.locator('.quiz input').nth(s.quiz.answer).check();await page.locator('[data-check-answer]').click();await page.locator('[data-reveal-answer]').click();const expanded=await page.evaluate(inspect);for(const issue of expanded.issues)report.issues.push({lecture:l.number,slide:s.number,id:s.id,view:viewport.name,theme,state:'answer-shown',...issue});}
      if(result.issues.length)await page.screenshot({path:`${out}/issue-${viewport.name}-${theme}-${l.number}-${s.number}.png`,fullPage:true});
     }
-    console.log(`${viewport.name}/${theme}: lecture ${l.number}, 81 slides inspected`);
+    console.log(`${viewport.name}/${theme}: lecture ${l.number}, ${l.slides.length} slides inspected`);
    }
   }
  }

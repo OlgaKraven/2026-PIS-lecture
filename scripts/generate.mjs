@@ -41,7 +41,7 @@ function normalizeTerms(value){
  if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,normalizeTerms(v)]));
  return value;
 }
-const course={version:'pis-2026.10.23-v4',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
+const course={version:'pis-2026.10.23-v5',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
 for(let k=0;k<4;k++){
  const meta=plan[k],slides=normalizeTerms(enhanceSlides(finishSlides(loaded[k],meta,k+1),k+1));
  let elapsed=0;

@@ -44,16 +44,16 @@ try{
  assert.deepEqual(computations.join.result,[[104,'Клуб','pending'],[106,'Архив','accepted']]);assert.deepEqual(computations.empty.result,[]);
  report.checks.push('Все модели и сценарии, назад/далее, смена условий, пауза и продолжение, вычисление JOIN');
  // Persisted theme, presenter, audience privacy, slide and diagram synchronization.
- await page.goto(`${base}?webinar=1&slide=47&mode=presenter`);await page.locator('.presenter').waitFor();
+ await page.goto(`${base}?webinar=1&slide=46&mode=presenter`);await page.locator('.presenter').waitFor();
  const popup=page.waitForEvent('popup');await page.getByRole('button',{name:'Открыть окно аудитории'}).click();const audience=await popup;await audience.locator('.slide-frame').waitFor();
  assert.equal(await audience.locator('.presenter-notes').count(),0);
  await page.getByRole('button',{name:'Ещё',exact:true}).click();await page.locator('[data-theme-choice]').selectOption('dark');await page.getByRole('button',{name:'Закрыть',exact:true}).click();await audience.waitForFunction(()=>document.documentElement.dataset.theme==='dark');
  await page.getByRole('button',{name:'Развернуть схему'}).click();await audience.locator('.diagram-dialog').waitFor();await page.locator('.diagram-dialog').getByRole('button',{name:'Далее',exact:true}).click();await audience.waitForFunction(()=>document.querySelector('.learning-caption')?.textContent.includes('Пользователь и принадлежность'));
  await page.locator('.diagram-dialog').getByRole('button',{name:'К слайду',exact:true}).click();await audience.locator('.diagram-dialog').waitFor({state:'detached'});
- await page.getByRole('button',{name:'Следующий слайд'}).click();await audience.waitForURL('**slide=48**');
+ await page.getByRole('button',{name:'Следующий слайд'}).click();await audience.waitForURL('**slide=47**');
  await page.getByRole('button',{name:'Завершить показ'}).click();await audience.getByText('Показ завершён').waitFor();await page.getByRole('button',{name:'Следующий слайд'}).click();await page.waitForTimeout(100);assert.equal(await audience.locator('.slide-frame').count(),0);await audience.close();
  report.checks.push('Два окна: тема, слайд и шаг схемы синхронны; сценарий скрыт; завершение убирает слайд');
- await page.goto(`${base}?webinar=1&slide=5&mode=deck`);await page.locator('.bibliography').waitFor();
+ await page.goto(`${base}?webinar=1&slide=2&mode=deck`);await page.locator('.bibliography').waitFor();
  assert.equal(await page.locator('.presentation-topic').first().innerText(),'МДК 01.01 · 3 семестр');assert.equal(await page.locator('.slide-body').count(),0);assert.equal(await page.getByRole('link',{name:'Открыть источник ↗'}).count(),2);assert.equal(await page.locator('[data-tools]').innerText(),'');
  await page.evaluate(()=>Promise.all([...document.querySelectorAll('.source-qr')].map(i=>i.decode())));
  if(process.env.JSQR_PATH){await page.addScriptTag({path:process.env.JSQR_PATH});
@@ -64,13 +64,13 @@ try{
  // Both themes, narrow/low viewports, long profile fields, downloadable assets.
  for(const theme of ['light','dark']){
   await page.evaluate(t=>localStorage.setItem('pis-theme',t),theme);
-  for(const [name,slide] of [['title',1],['literature',5],['question',7],['states',47],['dense',77]]){
+  for(const [name,slide] of [['title',1],['literature',2],['question',6],['states',46],['dense',76]]){
    await page.goto(`${base}?webinar=1&slide=${slide}&mode=deck`);await page.locator('.slide-frame').waitFor();await page.evaluate(()=>document.fonts.ready);await page.screenshot({path:`output/review/${name}-${theme}.png`});
   }
  }
  for(const width of [320,390,1024]){
   await page.setViewportSize({width,height:width===1024?600:844});
-  for(const slide of [1,5,47]){
+  for(const slide of [1,2,46]){
    await page.goto(`${base}?webinar=1&slide=${slide}&mode=deck`);await page.locator('.slide-frame').waitFor();assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),`Горизонтальная прокрутка ${width}, ${slide}`);
   }
   await page.screenshot({path:`output/review/mobile-${width}.png`,fullPage:true});
