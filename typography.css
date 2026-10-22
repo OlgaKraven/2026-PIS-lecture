@@ -1,0 +1,48 @@
+@font-face {
+  font-family: Raleway;
+  src: url('assets/raleway-cyrillic.woff2') format('woff2');
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+:root {
+  --font-text: Raleway, Arial, sans-serif;
+  --font-code: Consolas, "Courier New", monospace;
+  font-family: var(--font-text);
+  font-weight: 400;
+}
+
+body,
+.ok-page,
+.slide-frame[data-slide-id],
+.lv,
+.lv-dialog,
+dialog,
+.presentation-select-menu {
+  font-family: var(--font-text);
+  font-weight: 400;
+}
+
+:is(#app, #offline-slides, dialog, .presentation-select-menu) :is(h1, h2, h3, h4, h5, h6, .lv-heading, .lv-node strong, .pd-brand strong) {
+  font-weight: 700;
+}
+
+:is(#app, #offline-slides, .offline-toolbar, .offline-controls, dialog, .presentation-select-menu) :is(button, .button, .icon-button, summary, nav a, [role="tab"]) {
+  font-family: var(--font-text);
+  font-weight: 600;
+}
+
+:is(#app, #offline-slides, .offline-toolbar, .offline-controls, dialog, .presentation-select-menu) :is(button, .button, .icon-button, summary, nav a, [role="tab"]) :where(span, strong, b, small) {
+  font-weight: inherit;
+}
+
+:is(#app, #offline-slides, dialog) :is(input, select, textarea) {
+  font-family: var(--font-text);
+  font-weight: 400;
+}
+
+:is(#app, #offline-slides, dialog) :is(pre, code, kbd, samp, .code-block) {
+  font-family: var(--font-code);
+  font-variant-ligatures: none;
+}

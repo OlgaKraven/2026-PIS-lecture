@@ -5,7 +5,7 @@ export function writeOffline(course){
  const escapeLine=app.split('\n').find(line=>line.startsWith('const e='));
  const mime={woff2:'font/woff2',webp:'image/webp',png:'image/png',jpg:'image/jpeg',svg:'image/svg+xml'};
  const embed=source=>source.replace(/assets\/[\w.-]+\.(?:woff2|webp|png|jpg|svg)/g,file=>`data:${mime[file.split('.').at(-1)]};base64,${fs.readFileSync(file).toString('base64')}`);
- const css=embed(fs.readFileSync('style.css','utf8')),diagrams=fs.readFileSync('diagrams.js','utf8'),practice=fs.readFileSync('practice.js','utf8');
+ const css=embed(fs.readFileSync('style.css','utf8')+'\n'+fs.readFileSync('typography.css','utf8')),diagrams=fs.readFileSync('diagrams.js','utf8'),practice=fs.readFileSync('practice.js','utf8');
  for(const l of course.lectures){
  const data=embed(JSON.stringify(l)).replace(/</g,'\\u003c');
  const script=`${diagrams}\n${practice}\n${escapeLine}\nconst course={discipline:${JSON.stringify(course.discipline)}};const profile={};\n${embed(renderer)}\nconst l=${data};

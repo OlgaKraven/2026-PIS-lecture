@@ -212,7 +212,7 @@
   margin:0 0 12px;
   font-size:13px;
   line-height:1.45;
-  font-weight:650;
+  font-weight:600;
 }
 
 .ok-page .ok-export-actions {
@@ -506,7 +506,7 @@
 }
 
 .ok-page .ok-topic h3 {
-  font-weight:650;
+  font-weight:600;
   font-size:18px;
   line-height:1.32;
   letter-spacing:-.015em;
