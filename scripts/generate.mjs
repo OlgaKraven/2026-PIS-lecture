@@ -86,7 +86,7 @@ for(const l of course.lectures){
  fs.writeFileSync(`materials/webinar-${l.number}-script.md`,text);
  const intro=`# ${discipline}\n\nМДК 01.01 · Лекция ${l.number}. ${l.title}\n\n`;
  const teacher=intro+l.slides.map(s=>`<a id="${s.id}"></a>\n\n## Слайд ${s.number}. ${s.title}\n\n${s.script}\n\n${s.visual.type==='bibliography'?s.visual.books.map(b=>`${b.citation} [Открыть источник](${b.url}).`).join('\n\n'):''}${s.visual.type==='resources'?`[Материалы занятия](${s.visual.url}).\n\n`:''}`).join('');
- fs.writeFileSync(`materials/webinar-${l.number}-teacher.md`,teacher);
+ fs.writeFileSync(`materials/webinar-${l.number}-teacher.md`,teacher.trimEnd()+'\n');
  fs.writeFileSync(`materials/webinar-${l.number}-alignment.json`,JSON.stringify({schemaVersion:1,sourceKind:'local',sourceFile:'../course.json',sourceSha256,sourceVersion:course.version,lectureId:l.id,moduleCode:course.moduleCode,documents:{presenter:`webinar-${l.number}-script.md`,teacher:`webinar-${l.number}-teacher.md`},slides:l.slides.map(s=>({slideId:s.id,title:s.title,displayNumber:s.number,anchor:s.id}))},null,2));
 
 }
