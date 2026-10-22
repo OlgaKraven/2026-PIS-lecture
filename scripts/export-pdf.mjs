@@ -8,6 +8,7 @@ try{
   await page.goto(`${base}?webinar=${n}&mode=print`);
   await page.waitForSelector('.print-slide:last-of-type');
   await page.evaluate(()=>document.fonts.ready);
+  await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode())));
   await page.emulateMedia({media:'print'});
   await page.evaluate(()=>window.dispatchEvent(new Event('resize')));
   await page.waitForTimeout(100);

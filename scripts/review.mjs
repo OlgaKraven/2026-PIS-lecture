@@ -75,9 +75,9 @@ try{
   }
   await page.screenshot({path:`output/review/mobile-${width}.png`,fullPage:true});
  }
- await page.setViewportSize({width:1280,height:800});await page.goto(base);await page.locator('.topic-card').first().waitFor();assert.equal(await page.locator('.topic-card').count(),4);assert.equal(await page.locator('.materials-link').getAttribute('href'),'https://disk.yandex.ru/d/P40mjNJWYJAW9g');
+ await page.setViewportSize({width:1280,height:800});await page.goto(base);await page.locator('.topic-card').first().waitFor();assert.equal(await page.locator('.topic-card').count(),4);assert.equal(await page.getByRole('button',{name:'Материалы — QR-код и ссылка'}).count(),1);
  for(const a of await page.locator('.topic-card a[download]').all()){const href=await a.getAttribute('href');assert.equal((await page.request.get(new URL(href,base).href)).status(),200);}
- await page.getByRole('button',{name:'Настройка перед занятием',exact:true}).click();await page.getByLabel('ФИО преподавателя').fill('Александра Константиновна Константинопольская');await page.getByLabel('Должность',{exact:true}).fill('Старший преподаватель информационных технологий');await page.getByLabel('Кафедра или лаборатория').fill('Кафедра проектирования информационных систем и ресурсов');await page.getByRole('button',{name:'Готово',exact:true}).click();await page.goto(`${base}?webinar=1&mode=deck`);await page.locator('.title-profile').waitFor();await page.screenshot({path:'output/review/long-profile.png'});
+ await page.locator('.ok-teacher summary').click();await page.getByLabel('ФИО преподавателя').fill('Александра Константиновна Константинопольская');await page.getByLabel('Должность преподавателя',{exact:true}).fill('Старший преподаватель информационных технологий');await page.getByLabel('Кафедра или лаборатория').fill('Кафедра проектирования информационных систем и ресурсов');await page.getByRole('button',{name:'Готово',exact:true}).click();await page.goto(`${base}?webinar=1&mode=deck`);await page.locator('.title-profile').waitFor();await page.screenshot({path:'output/review/long-profile.png'});
  report.checks.push('Светлая/тёмная темы; ширины 320,390,1024; длинные данные преподавателя; скачивания и новая ссылка');
  // Offline: all four files work with the network blocked.
  await page.route('http**/*',r=>r.abort());
