@@ -1,3 +1,4 @@
+import {quizRevisions} from './student-reading.mjs';
 // Each question has a separate transfer task. The examples are explicitly educational.
 const records=[
 [
@@ -80,12 +81,14 @@ export function addPractice(slides,lecture){
  for(const s of slides){result.push(s);if(!s.question)continue;
  const next=slides[slides.indexOf(s)+1];if(next?.question===s.question)continue;
  const q=s.question,r=records[lecture-1][q-1];
- const [title,prompt,options,answer,explanation,task,facts,decision,choices,solution]=r;
+ const revised=quizRevisions[lecture+'-'+q];
+ const [title,, , , ,task,facts,decision,choices,solution]=r;
+ const [prompt,options,answer,explanation]=revised||r.slice(1,5);
  const activity={id:`З${lecture}-П${q}`,revision:1,title,task,facts,decision,options:choices,answer:solution,explanation:reasoning[lecture-1][q-1],check:'Сопоставьте каждый факт с правилом. Обоснуйте, почему остальные решения не подходят.'};
  const common={supplemental:true,question:q,blockIndex:s.blockIndex,blockTitle:s.blockTitle,sources:s.sources,notebook:'',links:s.links,pauseSeconds:20,explanation:'',transition:'',body:'',number:0};
  const make=(kind,id,title,script,visual)=>({...common,id,title,kind,visual,speech:script,script,hint:kind==='practice'?'Откройте дополнение в новой вкладке. Сначала запишите прогноз; затем исследуйте факты и обоснуйте решение.':'Дайте аудитории выбрать вариант. Ответ и разбор показывайте отдельной командой.',visualDescription:kind==='practice'?task+' '+facts.join(' '):prompt+' '+options.join('; '),wordCount:script.split(/\s+/).length,estimatedSeconds:Math.ceil(script.split(/\s+/).length/110*60+20)});
  result.push({...make('practice',activity.id,`Практика: ${title}`,`Применим понятия вопроса к новому учебному случаю. ${task} Сначала запишите прогноз. Затем последовательно исследуйте факты: ${facts.join(' ')} Выберите решение и объясните его. Обоснованный вывод: ${choices[solution]}. ${reasoning[lecture-1][q-1]} Сравните свой прогноз с наблюдениями; если он изменился, сформулируйте причину. Это самостоятельный разбор, его результат не добавляется к баллам самопроверки.`,{type:'practice'}),activity});
- result.push({...make('quiz',`З${lecture}-Т${q}`,`Самопроверка · Вопрос ${q}`,`Проверим понимание вопроса. ${prompt} Варианты: ${options.join('; ')}. Прежде чем открыть ответ, предложите обоснование выбранного решения. Правильный вариант: ${options[answer]}. ${explanation} Обсудите, какое условие пришлось бы изменить, чтобы другой ответ стал допустимым.`,{type:'quiz'}),quiz:{id:`З${lecture}-Т${q}`,revision:1,prompt,options,answer,explanation}});
+ result.push({...make('quiz',`З${lecture}-Т${q}`,`Самопроверка · Вопрос ${q}`,`Проверим понимание вопроса. ${prompt} Варианты: ${options.join('; ')}. Прежде чем открыть ответ, предложите обоснование выбранного решения. Правильный вариант: ${options[answer]}. ${explanation} Обсудите, какое условие пришлось бы изменить, чтобы другой ответ стал допустимым.`,{type:'quiz'}),quiz:{id:`З${lecture}-Т${q}`,revision:revised?2:1,prompt,options,answer,explanation}});
  }
  return result.map((s,i)=>({...s,number:i+1}));
 }

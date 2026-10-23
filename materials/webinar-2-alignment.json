@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "e47e2a529d45a17de9c93d76eb13bdae06bb3590e11ca1bc436871730cd772e6",
-  "sourceVersion": "pis-2026.10.23-v5",
+  "sourceSha256": "642c847c4dbbab2bdc016f7b2316b1350a116b4adc980a8317d11662ca256777",
+  "sourceVersion": "pis-2026.10.23-v6",
   "lectureId": "webinar-2",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -397,19 +397,19 @@
     },
     {
       "slideId": "З2-С50",
-      "title": "Таблица пользователей",
+      "title": "От объекта к строке пользователя",
       "displayNumber": 65,
       "anchor": "З2-С50"
     },
     {
       "slideId": "З2-С51",
-      "title": "Таблица проектов",
+      "title": "Почему храним teacher_id",
       "displayNumber": 66,
       "anchor": "З2-С51"
     },
     {
       "slideId": "З2-С52",
-      "title": "Таблица заявок",
+      "title": "Собираем строку заявки",
       "displayNumber": 67,
       "anchor": "З2-С52"
     },
@@ -457,13 +457,13 @@
     },
     {
       "slideId": "З2-С58",
-      "title": "Проход по сценарию Анны",
+      "title": "Проверка прототипа по данным",
       "displayNumber": 75,
       "anchor": "З2-С58"
     },
     {
       "slideId": "З2-С59",
-      "title": "Проход по сценарию Ирины",
+      "title": "От прототипа к проверке реализации",
       "displayNumber": 76,
       "anchor": "З2-С59"
     },

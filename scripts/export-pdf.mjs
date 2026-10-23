@@ -5,8 +5,9 @@ try{
  const page=await browser.newPage({viewport:{width:1440,height:900}});
  const base=process.env.SITE_URL||'http://127.0.0.1:4176/';
  for(let n=1;n<=4;n++){
+  if(process.env.PDF_LECTURES&&!process.env.PDF_LECTURES.split(',').includes(String(n)))continue;
   await page.goto(`${base}?webinar=${n}&mode=print`);
-  await page.waitForSelector('.print-slide:last-of-type');
+  await page.waitForSelector('.print-slide:last-of-type',{state:'attached'});
   await page.evaluate(()=>document.fonts.ready);
   await page.evaluate(()=>Promise.all([...document.images].map(image=>image.decode())));
   await page.emulateMedia({media:'print'});

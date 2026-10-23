@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "e47e2a529d45a17de9c93d76eb13bdae06bb3590e11ca1bc436871730cd772e6",
-  "sourceVersion": "pis-2026.10.23-v5",
+  "sourceSha256": "642c847c4dbbab2bdc016f7b2316b1350a116b4adc980a8317d11662ca256777",
+  "sourceVersion": "pis-2026.10.23-v6",
   "lectureId": "webinar-4",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -49,7 +49,7 @@
     },
     {
       "slideId": "З4-С04",
-      "title": "Виды дефектов",
+      "title": "От требования к дефекту",
       "displayNumber": 7,
       "anchor": "З4-С04"
     },
@@ -385,7 +385,7 @@
     },
     {
       "slideId": "З4-С48",
-      "title": "Выбор подхода по задаче",
+      "title": "Базовый поиск и смысловой поиск",
       "displayNumber": 63,
       "anchor": "З4-С48"
     },
@@ -409,7 +409,7 @@
     },
     {
       "slideId": "З4-С52",
-      "title": "Схема интеллектуального поиска",
+      "title": "Базовая модель поиска по тегам",
       "displayNumber": 67,
       "anchor": "З4-С52"
     },
@@ -463,7 +463,7 @@
     },
     {
       "slideId": "З4-С59",
-      "title": "Памятка сопровождения",
+      "title": "Памятка действий при сбое",
       "displayNumber": 76,
       "anchor": "З4-С59"
     },

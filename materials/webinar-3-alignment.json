@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "e47e2a529d45a17de9c93d76eb13bdae06bb3590e11ca1bc436871730cd772e6",
-  "sourceVersion": "pis-2026.10.23-v5",
+  "sourceSha256": "642c847c4dbbab2bdc016f7b2316b1350a116b4adc980a8317d11662ca256777",
+  "sourceVersion": "pis-2026.10.23-v6",
   "lectureId": "webinar-3",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -283,7 +283,7 @@
     },
     {
       "slideId": "З3-С35",
-      "title": "Уникальная пара при конкуренции",
+      "title": "Как приложение обрабатывает конфликт UNIQUE",
       "displayNumber": 46,
       "anchor": "З3-С35"
     },
@@ -319,7 +319,7 @@
     },
     {
       "slideId": "З3-С39",
-      "title": "Путь заявки: запрос",
+      "title": "Полный путь: от формы к запросу",
       "displayNumber": 52,
       "anchor": "З3-С39"
     },
@@ -337,7 +337,7 @@
     },
     {
       "slideId": "З3-С42",
-      "title": "Путь заявки: проверка мотивации",
+      "title": "Полный путь: одинаковый подсчёт длины",
       "displayNumber": 55,
       "anchor": "З3-С42"
     },
@@ -349,7 +349,7 @@
     },
     {
       "slideId": "З3-С44",
-      "title": "Путь заявки: успешный ответ",
+      "title": "Полный путь: связать ответ с записью",
       "displayNumber": 57,
       "anchor": "З3-С44"
     },
@@ -361,13 +361,13 @@
     },
     {
       "slideId": "З3-С46",
-      "title": "Путь заявки: чтение Анной",
+      "title": "Полный путь: проверка после нового входа",
       "displayNumber": 59,
       "anchor": "З3-С46"
     },
     {
       "slideId": "З3-С47",
-      "title": "Путь заявки: чтение Ириной",
+      "title": "Полный путь: другой пользователь той же записи",
       "displayNumber": 60,
       "anchor": "З3-С47"
     },
@@ -463,7 +463,7 @@
     },
     {
       "slideId": "З3-С59",
-      "title": "Резервная копия",
+      "title": "Возврат после неудачного выпуска",
       "displayNumber": 76,
       "anchor": "З3-С59"
     },

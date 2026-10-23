@@ -111,3 +111,5 @@
 
 .visual-pair .relation-graph text{font-size:28px}
 .visual-table th{color:var(--ink)}
+
+.quiz-print-answers{display:none}.print-answer-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.5cqw 2cqw}.print-answer-grid section{border:1px solid var(--border);border-left:3px solid var(--accent);padding:1cqw;border-radius:.5cqw}.print-answer-grid h3{font-size:1.5cqw;margin:0 0 .4cqw}.print-answer-grid p{font-size:1.35cqw;line-height:1.35;margin:.4cqw 0}.print-answer-grid strong{font-size:1.35cqw;line-height:1.35;color:var(--accent)}@media print{.quiz-print-answers{display:block!important}.quiz-print-answers .slide-content{display:block}.quiz-print-answers .slide-body{margin:.5cqw 0 1cqw}.quiz-print-answers .print-answer-grid{max-height:none}}

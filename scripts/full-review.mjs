@@ -29,7 +29,7 @@ try{
   for(const theme of viewport.themes){
    await page.goto(base);await page.locator('.ok-page').waitFor();await page.evaluate(t=>localStorage.setItem('pis-theme',t),theme);
    for(const l of course.lectures){
-    for(const s of l.slides){if(process.env.REVIEW_PAIRS==='1'&&s.visual.type!=='pair')continue;
+    for(const s of l.slides){if(process.env.REVIEW_SLIDES&&!process.env.REVIEW_SLIDES.split(',').includes(s.id))continue;if(process.env.REVIEW_PAIRS==='1'&&s.visual.type!=='pair')continue;
      await page.goto(`${base}?webinar=${l.number}&slide=${s.number}&mode=deck`);await page.locator('.slide-frame').waitFor();await page.evaluate(()=>document.fonts.ready);
      const result=await page.evaluate(inspect);report.views++;for(const issue of result.issues)report.issues.push({lecture:l.number,slide:s.number,id:s.id,view:viewport.name,theme,...issue});
      if(viewport.name==='desktop'){

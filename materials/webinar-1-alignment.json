@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "e47e2a529d45a17de9c93d76eb13bdae06bb3590e11ca1bc436871730cd772e6",
-  "sourceVersion": "pis-2026.10.23-v5",
+  "sourceSha256": "642c847c4dbbab2bdc016f7b2316b1350a116b4adc980a8317d11662ca256777",
+  "sourceVersion": "pis-2026.10.23-v6",
   "lectureId": "webinar-1",
   "moduleCode": "МДК 01.01",
   "documents": {
@@ -85,7 +85,7 @@
     },
     {
       "slideId": "З1-С08",
-      "title": "Потерянное обращение",
+      "title": "Подтверждение и сохранение",
       "displayNumber": 13,
       "anchor": "З1-С08"
     },
@@ -145,7 +145,7 @@
     },
     {
       "slideId": "З1-С16",
-      "title": "Внешнее окружение",
+      "title": "Окружение и ограничения сервиса",
       "displayNumber": 23,
       "anchor": "З1-С16"
     },
@@ -349,7 +349,7 @@
     },
     {
       "slideId": "З1-С44",
-      "title": "Изменение требований после запуска",
+      "title": "Изменение требования: оценка влияния",
       "displayNumber": 57,
       "anchor": "З1-С44"
     },
@@ -457,13 +457,13 @@
     },
     {
       "slideId": "З1-С58",
-      "title": "Дополнительная сложность",
+      "title": "Частичное сохранение вложения",
       "displayNumber": 75,
       "anchor": "З1-С58"
     },
     {
       "slideId": "З1-С59",
-      "title": "Решение отложить вложения",
+      "title": "Решение о первой версии",
       "displayNumber": 76,
       "anchor": "З1-С59"
     },
