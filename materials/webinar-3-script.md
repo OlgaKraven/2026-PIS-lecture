@@ -1530,8 +1530,10 @@ WHERE id = $1;
 
 Добавление записи. Фрагмент SQL.
 INSERT INTO applications
-  (project_id, student_id, motivation, status, created_at)
-VALUES ($1, $2, $3, 'pending', CURRENT_TIMESTAMP)
+  (project_id, student_id,
+   motivation, status, created_at)
+VALUES ($1, $2, $3, 'pending',
+        CURRENT_TIMESTAMP)
 RETURNING id;
 
 ### Текст выступления
