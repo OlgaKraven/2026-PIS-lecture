@@ -15,11 +15,11 @@ for(const l of course.lectures){
  let elapsed=0;
  for(const [i,s] of l.slides.entries()){
   assert.ok(!ids.has(s.id),s.id);ids.add(s.id);assert.equal(s.number,i+1);assert.ok(s.title&&s.script&&s.hint&&s.visualDescription);
-  if(i>0&&!['literature','resources','questions','practice','quiz'].includes(s.kind))assert.ok(s.body,s.id);
+  if(i>0&&!['literature','resources','questions','practice','quiz','agenda','summary'].includes(s.kind))assert.ok(s.body,s.id);
   assert.equal(s.startSeconds,elapsed);elapsed+=s.plannedSeconds;if(s.supplemental){assert.equal(s.plannedSeconds,0);}else{assert.ok(s.plannedSeconds>s.pauseSeconds,s.id);assert.ok(s.requiredWpm>=65&&s.requiredWpm<=150,`${s.id}: ${s.requiredWpm}`);}
   for(const url of s.sources)assert.equal(new URL(url).protocol,'https:');
   if(s.visual.type==='bibliography')for(const book of s.visual.books){assert.ok(fs.existsSync(book.qr));assert.equal(s.body,'');}
-  if(s.learning){models++;assert.ok(s.learning.catalog);for(const variant of s.learning.scenarios){scenarios++;assert.ok(variant.input);assert.ok(variant.frames[0].caption);assert.ok(variant.frames.at(-1).result);}}
+  if(s.learning){models++;assert.ok(s.learning.catalog);for(const variant of s.learning.scenarios){scenarios++;assert.ok(variant.input);if(s.learning.kind!=='visual')assert.ok(variant.frames[0].caption);assert.ok(variant.frames.at(-1).result);}}
  }
  // Original 240 IDs remain addressable after insertion of structural slides.
  for(let n=1;n<=60;n++)assert.ok(ids.has(`З${l.number}-С${String(n).padStart(2,'0')}`));

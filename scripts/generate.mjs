@@ -7,6 +7,7 @@ import {finishSlides} from '../authoring/finishing.mjs';
 import {addPractice} from '../authoring/practice.mjs';
 import {addStructure} from '../authoring/structure.mjs';
 import {enhanceSlides} from '../authoring/enhancements.mjs';
+import {cleanSlideCopy} from '../authoring/slide-copy.mjs';
 import {writeOffline} from './offline.mjs';
 const loaded=[];
 for(let n=1;n<=4;n++){
@@ -22,8 +23,8 @@ function describe(v){
  if(v.type==='process')return 'Последовательность подписанных блоков. '+v.items.map((x,i)=>`${i+1}. ${x.title}: ${x.text}.`).join(' ');
  if(v.type==='table')return `Таблица. Столбцы: ${v.columns.join('; ')}. `+v.rows.map((row,i)=>`Строка ${i+1}: ${row.join('; ')}.`).join(' ');
  if(v.type==='diagram')return `Схема. Блоки: ${v.nodes.join('; ')}. Связи: `+v.edges.map(([a,b,l])=>`${a} — ${b}: ${l}`).join('; ')+'.';
- if(v.type==='code')return `Фрагмент ${v.language}. ${v.caption}\n${v.code}`;
- if(v.type==='bars')return `Горизонтальные полосы. Ось значений: ${v.unit}. `+v.items.map(([l,n])=>`${l}: ${n}`).join('; ')+`. ${v.caption}`;
+ if(v.type==='code')return `Фрагмент ${v.language}.${v.caption?' '+v.caption:''}\n${v.code}`;
+ if(v.type==='bars')return `Горизонтальные полосы. Ось значений: ${v.unit}. `+v.items.map(([l,n])=>`${l}: ${n}`).join('; ')+`.${v.caption?' '+v.caption:''}`;
  return `Подготовленный макет экрана «${v.screen}», состояние «${v.state}». ${v.caption||''} ${v.description||''}`;
 }
 function normalizeTerms(value){
@@ -32,7 +33,7 @@ function normalizeTerms(value){
  if(value&&typeof value==='object')return Object.fromEntries(Object.entries(value).map(([k,v])=>[k,normalizeTerms(v)]));
  return value;
 }
-const course={version:'pis-2026.10.23-v8',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
+const course={version:'pis-2026.10.23-v9',discipline,specialty,moduleCode:'МДК 01.01',caseName:'Проектный навигатор',wordsPerMinute:110,lectures:[]};
 for(let k=0;k<4;k++){
  const meta=plan[k],slides=normalizeTerms(clarifyStudentModels(enhanceSlides(prepareStudentReading(finishSlides(loaded[k],meta,k+1),k+1),k+1),k+1));
  let elapsed=0;
@@ -55,7 +56,8 @@ for(let k=0;k<4;k++){
    const result={...s,question:i>1&&s.kind!=='questions'?question:null,id:`З${k+1}-С${String(i+1).padStart(2,'0')}`,number:i+1,blockTitle,blockIndex:meta.blocks.indexOf(b),plannedSeconds:sec,startSeconds:elapsed,transition,script,visualDescription:describe(s.visual),wordCount:count,pauseSeconds,estimatedSeconds:Math.round(count/110*60+pauseSeconds),requiredWpm:Math.round(count/((sec-pauseSeconds)/60)),links:`${meta.id}, ${blockTitle}; учебные правила проекта`};
    elapsed+=sec;return result;
  });
- output=refineTeacherNarration(addPractice(addStructure(output,k+1,meta),k+1),k+1);
+ output=refineTeacherNarration(cleanSlideCopy(addPractice(addStructure(output,k+1,meta),k+1)),k+1);
+ for(const s of output)if(/-С\d+$/.test(s.id))s.visualDescription=describe(s.visual);
  for(const s of output.filter(s=>s.visual.type==='agenda'))for(const item of s.visual.items)item.start=output.find(x=>x.kind==='section'&&x.question===item.number).number;
  // Keep the 120-minute lecture budget after adding introductions and literature.
  // Allocate from actual narration, preserving pauses; do not compress the opening block.
