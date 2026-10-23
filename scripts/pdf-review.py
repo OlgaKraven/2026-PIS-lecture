@@ -21,6 +21,10 @@ for l in c['lectures']:
   if s.get('quiz'):
    for opt in s['quiz']['options']:
     if not any(norm(opt) in t for t in texts):report['issues'].append({'lecture':n,'missingOption':opt})
+ for s in l['slides']:
+  if s.get('activity'):
+   for step in s['activity']['steps']:
+    if not any(norm(step['instruction']) in text for text in texts): report['issues'].append({'lecture':n,'missingPracticeStep':step['title']})
  urls=[a.get_object().get('/A',{}).get('/URI','') for p in r.pages for a in p.get('/Annots',[])]
  assert len([u for u in urls if 'mode=activity' in u])==8
  subprocess.run(['pdftoppm','-scale-to','720','-png',str(pdf),str(out/f'lecture-{n}')],check=True,stdout=subprocess.DEVNULL,stderr=subprocess.DEVNULL)

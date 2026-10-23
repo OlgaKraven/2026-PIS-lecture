@@ -33,4 +33,9 @@ for(const l of course.lectures){
 }
 assert.ok(models>15);assert.ok(scenarios>25);
 for(const l of course.lectures){assert.equal(l.slides.filter(s=>s.quiz).length,8);assert.equal(l.slides.filter(s=>s.activity).length,8);for(const s of l.slides.filter(s=>s.quiz)){assert.ok(s.quiz.answer>=0&&s.quiz.answer<s.quiz.options.length);assert.equal(l.slides[s.number-2].kind,'practice');}}
+for(const l of course.lectures)for(const s of l.slides.filter(s=>s.activity)){
+ const a=s.activity;assert.equal(a.revision,2);assert.equal(a.options,undefined);assert.equal(a.answer,undefined);assert.equal(a.steps.length,3);
+ for(const step of a.steps){assert.ok(step.title&&step.instruction);assert.equal(step.fields.length,2);assert.ok(s.script.includes(step.instruction));for(const field of step.fields){assert.ok(field.label&&field.feedback);assert.ok(field.answers.length);assert.ok(['text','number','set','sequence'].includes(field.mode));assert.ok(field.answers.every(x=>typeof x==='string'&&x.trim()));}}
+ assert.ok(s.teacherAnswer.includes(a.steps[0].fields[0].answers[0]));
+}
 console.log('Проверены структура, стабильные ID, литература, QR-ресурсы, схемы и привязка преподавательских текстов.');

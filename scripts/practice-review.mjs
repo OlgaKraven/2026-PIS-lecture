@@ -18,17 +18,29 @@ try{
    await page.locator('[data-reveal-answer]').click();assert.ok((await page.locator('.quiz-solution').innerText()).includes(q.explanation));report.quizzes++;
   }
   for(const s of l.slides.filter(s=>s.activity)){
-   const a=s.activity;await page.goto(`${base}?webinar=${l.number}&slide=${s.number}&mode=deck`);await page.locator('[data-activity]').waitFor();const popup=page.waitForEvent('popup');await page.locator('[data-activity]').click();const activity=await popup;activity.on('pageerror',e=>report.errors.push(e.message));await activity.locator('.activity-page').waitFor();
-   assert.equal(await activity.locator('[data-solution]').isVisible(),false);assert.equal(await activity.locator('[data-fact]:visible').count(),0);
-   await activity.locator('[data-check-activity]').click();assert.match(await activity.locator('[data-activity-feedback]').innerText(),/Запишите прогноз/);assert.equal(await activity.locator('[data-activity-solution]').isVisible(),false);
-   await activity.locator('[data-prediction]').fill('Ожидаю результат по условию; проверю наблюдения.');await activity.locator('[data-reason]').fill('Сопоставляю факты и заданное ограничение.');
-   for(let i=0;i<a.facts.length;i++)await activity.locator('[data-evidence-next]').click();assert.equal(await activity.locator('[data-fact]:visible').count(),a.facts.length);
-   await activity.locator('[data-evidence-back]').click();assert.equal(await activity.locator('[data-fact]:visible').count(),a.facts.length-1);await activity.locator('[data-evidence-next]').click();
-   await activity.locator('input[type=radio]').nth((a.answer+1)%a.options.length).check();await activity.locator('[data-check-activity]').click();assert.match(await activity.locator('[data-activity-feedback]').innerText(),/пока не согласуется/);
-   await activity.locator('input[type=radio]').nth(a.answer).check();await activity.locator('[data-check-activity]').click();assert.match(await activity.locator('[data-activity-feedback]').innerText(),/Решение верно/);
-   await activity.locator('[data-activity-solution]').click();assert.ok((await activity.locator('[data-solution]').innerText()).includes(a.explanation));
-   await activity.locator('[data-conclusion]').fill('Уточнил вывод по всем наблюдениям.');await activity.reload();await activity.locator('[data-prediction]').waitFor();assert.equal(await activity.locator('input[type=radio]').nth(a.answer).isChecked(),true);assert.equal(await activity.locator('[data-conclusion]').inputValue(),'Уточнил вывод по всем наблюдениям.');assert.equal(await activity.locator('[data-solution]').isVisible(),false);
-   await activity.close();report.activities++;
+   const a=s.activity;await page.evaluate(a=>localStorage.setItem(`pis-activity-${a.id}-r1`,JSON.stringify({prediction:'Старый черновик'})),a);await page.goto(`${base}?webinar=${l.number}&slide=${s.number}&mode=deck`);await page.locator('[data-activity]').waitFor();const popup=page.waitForEvent('popup');await page.locator('[data-activity]').click();const activity=await popup;activity.on('pageerror',e=>report.errors.push(e.message));await activity.locator('.activity-page').waitFor();
+   assert.equal(await activity.locator('input[type=radio]').count(),0);assert.equal(await activity.locator('[data-prediction]').inputValue(),'');await activity.locator('[data-check-step]').click();assert.match(await activity.locator('[data-step-feedback]').innerText(),/Сначала запишите/);assert.equal(await activity.locator('[data-step-key]').isVisible(),false);
+   assert.equal(await activity.locator('[data-step-go="1"]').isDisabled(),true);
+   assert.equal(await activity.locator('[data-step-key]').isVisible(),false);
+   await activity.locator('[data-team]').fill('Команда 1');await activity.locator('[data-prediction]').fill('Сопоставим правило с результатами каждого шага.');
+   for(let i=0;i<a.steps.length;i++){
+    const step=a.steps[i];assert.match(await activity.locator('.team-step-label').innerText(),new RegExp('Шаг '+(i+1)));
+    await activity.locator('[data-check-step]').click();assert.equal(await activity.locator('[data-team-next]').isDisabled(),true);
+    for(let j=0;j<step.fields.length;j++)await activity.locator(`[data-team-field="${j}"]`).fill('ошибочный результат');
+    await activity.locator('[data-step-reason]').fill('Обосновываем по условию и проверяем контрпример.');await activity.locator('[data-check-step]').click();assert.match(await activity.locator('[data-step-feedback]').innerText(),/Проверено 0/);assert.equal(await activity.locator('[data-team-next]').isDisabled(),true);
+    await activity.locator('[data-step-key]').click();for(const f of step.fields)assert.ok((await activity.locator('[data-step-solution]').innerText()).includes(f.answers[0]));await activity.locator('[data-step-key]').click();
+    for(let j=0;j<step.fields.length;j++){
+     const f=step.fields[j];await activity.locator(`[data-team-field="${j}"]`).fill(f.answers[0]);await activity.locator('[data-check-step]').click();
+     assert.match(await activity.locator('[data-step-feedback]').innerText(),new RegExp('Проверено '+(j+1)+' из '+step.fields.length));
+     if(j<step.fields.length-1)assert.equal(await activity.locator('[data-team-next]').isDisabled(),true);
+    }
+    assert.equal(await activity.locator('[data-team-next]').isDisabled(),false);await activity.locator('[data-team-next]').click();report.steps=(report.steps||0)+1;
+   }
+   assert.equal(await activity.locator('[data-team-complete]').isVisible(),true);await activity.locator('[data-activity-solution]').click();assert.ok((await activity.locator('[data-solution]').innerText()).includes(a.explanation));
+   await activity.locator('[data-conclusion]').fill('Проверили все результаты и уточнили исходный прогноз.');await activity.reload();await activity.locator('[data-team-complete]').waitFor({state:'visible'});assert.equal(await activity.locator('[data-team]').inputValue(),'Команда 1');assert.equal(await activity.locator('[data-conclusion]').inputValue(),'Проверили все результаты и уточнили исходный прогноз.');assert.equal(await activity.locator('[data-solution]').isVisible(),false);
+   // Changing an early result invalidates all later checks, preserving their drafts.
+   await activity.locator('[data-step-go="0"]').click();await activity.locator('[data-team-field="0"]').fill('изменение');assert.equal(await activity.locator('[data-step-go="1"]').isDisabled(),true);assert.equal(await activity.locator('[data-team-complete]').isVisible(),false);await activity.reload();assert.equal(await activity.locator('[data-team-field="0"]').inputValue(),'изменение');
+   assert.equal(await activity.evaluate(a=>JSON.parse(localStorage.getItem(`pis-activity-${a.id}-r1`)).prediction,a),'Старый черновик');await activity.close();report.activities++;
   }
  }
  // Aggregate reports use actual checked answers and persist by task/revision.
@@ -46,6 +58,14 @@ try{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto(`${base}?webinar=3&slide=${course.lectures[2].slides.find(s=>s.learning?.id==='request').number}&mode=deck`);await page.locator('[data-diagram]').click();await page.locator('[data-play]').click();assert.match(await page.locator('.learning-toolbar').innerText(),/Шаг 1/);await page.waitForTimeout(2100);assert.match(await page.locator('.learning-toolbar').innerText(),/Шаг 1/);
  // Offline questions and new-tab independent activities run without HTTP access.
  await page.route('http**/*',r=>r.abort());
- for(const l of course.lectures){const q=l.slides.find(s=>s.quiz),s=l.slides.find(s=>s.activity),url=pathToFileURL(path.resolve(`materials/webinar-${l.number}.html`)).href;await page.goto(url+'#slide='+q.number);await page.locator('.offline-slide:not([hidden]) .quiz').waitFor();await page.locator('.offline-slide:not([hidden]) .quiz input').nth(q.quiz.answer).check();await page.locator('.offline-slide:not([hidden]) [data-check-answer]').click();assert.match(await page.locator('.offline-slide:not([hidden]) .quiz-feedback').innerText(),/Верно/);await page.goto(url+'#activity='+encodeURIComponent(s.id));await page.locator('.activity-page').waitFor();await page.locator('[data-evidence-next]').click();assert.equal(await page.locator('[data-fact]:visible').count(),1);report.offline++;}
+ for(const l of course.lectures){
+  const url=pathToFileURL(path.resolve(`materials/webinar-${l.number}.html`)).href;
+  for(const s of l.slides.filter(s=>s.activity)){
+   await page.goto(url+'#activity='+encodeURIComponent(s.id));await page.locator('.activity-page').waitFor();await page.locator('[data-step-go="0"]').click();await page.locator('[data-prediction]').fill('Прогноз команды без доступа к сети.');
+   for(const step of s.activity.steps){for(let j=0;j<step.fields.length;j++)await page.locator(`[data-team-field="${j}"]`).fill(step.fields[j].answers[0]);await page.locator('[data-step-reason]').fill('Проверяем правило и результат по условию.');await page.locator('[data-check-step]').click();assert.equal(await page.locator('[data-team-next]').isDisabled(),false);await page.locator('[data-team-next]').click();}
+   assert.equal(await page.locator('[data-team-complete]').isVisible(),true);report.offline++;
+  }
+ }
+
  assert.deepEqual(report.errors,[]);console.log(report);
 }finally{fs.writeFileSync('output/practice-review/report.json',JSON.stringify(report,null,2));await browser.close();}

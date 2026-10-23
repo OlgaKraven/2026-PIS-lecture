@@ -2,8 +2,8 @@
   "schemaVersion": 1,
   "sourceKind": "local",
   "sourceFile": "../course.json",
-  "sourceSha256": "442f172b6b0ab56d84072b5ccdcdfb1ab0f4ecc642be922e990984f6a355bd0d",
-  "sourceVersion": "pis-2026.10.23-v7",
+  "sourceSha256": "49f2c9acacbea83a035cdf0189694b655339fe600a99b0718cdfa095d2ca6a27",
+  "sourceVersion": "pis-2026.10.23-v8",
   "lectureId": "webinar-3",
   "moduleCode": "МДК 01.01",
   "documents": {
